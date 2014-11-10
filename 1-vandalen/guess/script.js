@@ -18,13 +18,13 @@ window.onload = function(){
 		}
 		else if(number == secret){
 			return (true, console.log("Grattis du vann! Det hemliga talet var "+secret+" och du behövde "+count+" gissningar för att hitta det."))
-		};
+		}
 		else if(number > secret){
 			return (false, console.log("Det hemliga talet är lägre!"))
-		}; 
+		}
 		else if(number < secret){
 			return (false, console.log("Det hemliga talet är högre!"))
-		};
+		}
 		
 		// Plats för förändring.
 
@@ -35,10 +35,9 @@ window.onload = function(){
 		// [false, "Det hemliga talet är lägre!"]
 		// [false, "Talet är utanför intervallet 0 - 100"]		
 	};
+	//kör en loop tills det inskrivna talet är lika med det hemliga
 	
-	for(true){ //kör en loop tills det inskrivna talet är lika med det hemliga
-		guess()
-	}
+	
 
 	// ------------------------------------------------------------------------------
 
