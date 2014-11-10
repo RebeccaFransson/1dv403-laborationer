@@ -6,8 +6,16 @@ window.onload = function(){
 	var convertString = function(str){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
+		if (str == str.toUpperCase()){
+			str.toLowerCase(str);
+		}
+		else if(str == str.toLowerCase()){
+			str.toUpperCase();
+		}
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
-	
+		
+//if (character == character.toUpperCase()) {
+// alert ('upper case true');
 
 
 
