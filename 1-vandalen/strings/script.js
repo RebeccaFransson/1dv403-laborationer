@@ -15,7 +15,7 @@ window.onload = function(){
 		for (var i = 0; i < str.length; i++) {//kolla varje bokstav i strängen
 		
 		if(isEmptyOrSpaces(str)){
-			//return ["Skriv ett meddelande i textfältet!"]
+			return ["Skriv ett meddelande i textfältet!"]
 		}
 
 		else if(str[i] == str[i].toUpperCase()){
