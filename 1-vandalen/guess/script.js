@@ -35,7 +35,7 @@ window.onload = function(){
 		// [false, "Det hemliga talet är lägre!"]
 		// [false, "Talet är utanför intervallet 0 - 100"]		
 	};
-	//kör en loop tills det inskrivna talet är lika med det hemliga
+
 	
 	
 
