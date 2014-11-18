@@ -2,26 +2,39 @@
 
 window.onload = function(){
 
+	function isEmptyOrSpaces(str){
+    return str === null || str.match(/^ *$/) !== null; //en funktion som fungerar som nullOrWhiteSpace
+}
+
 	// I denna funktion ska du skriva koden för att hantera "spelet"
-	var convertString = function(str){
+	var convertString = function(str){ 
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
-		if (str == str.toUpperCase()){
-			str.toLowerCase(str);
+		var p1 = "";
+		console.log("funkar hit iallfall...");
+		for (var i = 0; i < str.length; i++) {//kolla varje bokstav i strängen
+		
+		if(isEmptyOrSpaces(str)){
+			return ["Skriv ett meddelande i textfältet!"]
 		}
-		else if(str == str.toLowerCase()){
-			str.toUpperCase();
+
+		else if(str[i] == str[i].toUpperCase()){
+		console.log("toUpperCase");
+			p1 += str[i].toLowerCase();
+
 		}
+		else if(str[i] == str[i].toLowerCase()){
+		console.log("toLowerCase" + p1);
+			p1 += str[i].toUpperCase(); 
+		}
+
+		};
+		return p1.replace(/A/gi, "#"); //ersätter alla a, stora som små, med #
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
 		
-//if (character == character.toUpperCase()) {
-// alert ('upper case true');
-
-
-
-
-
-
+		//else{
+		//	return ["Nu blev det något galet!"]
+		//}
 	};
 	// ------------------------------------------------------------------------------
 
