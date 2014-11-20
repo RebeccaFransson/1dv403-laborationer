@@ -9,19 +9,23 @@
         <content>
             <header>LabbyMessage</header>
             <main>
-                Här ska hela chatten vara
-                <ul>
-                    <li>HÄR ÄR ETT MEDDELANDE</li>
-                    <li>HÄR ÄR ETT MEDDELANDE</li>
-                    <li>HÄR ÄR ETT MEDDELANDE</li>
-                    <li>HÄR ÄR ETT MEDDELANDE</li>
-                </ul>
+                <div class="message">
+                    <ul>
+                        <li>Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. <div class="delete time icons">hej</div></li>
+                        <li>Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. <div class="delete time icons">hej</div></li>
+                        <li>HÄR ÄR ETT MEDDELANDE<div class="delete time icons">hej</div></li>
+                        
+                    </ul>
+                </div>
+                
                 <form>
-     			    <input type="text" id="number" /> <input id="send" type="submit" value="Skicka" />
+                    
+     			    <input placeholder="            Klicka för att börja skriva ditt meddelande" type="text" id="number" /> <button class="button-secondary pure-button" id="send" type="submit">Send</button>
      			    <p id="value"></p>
     		    </form>
-    		
+                
             </main>
+            
  		</content>
     	  <script src="script.js"></script>
     </body>

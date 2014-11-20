@@ -1,6 +1,6 @@
 content{
     width: 900px;
-    height: 675px;
+    height: 678px;
     margin:auto;
     border: 5px solid #d7d7d7;
     background-image: url('lappymezzage.jpg');
@@ -8,10 +8,70 @@ content{
     background-repeat:no-repeat;
 }
 main{
-    width: 496px;
-    height: 342px;
+    width: 500px;
+    height: 336px;
     float: right;
     margin-right:90px;
-    margin-top:30px;
-    border: 1px solid pink;
+    margin-top:42px;
+    background-color:rgb(75, 127, 149);
 }
+.message li{
+    width: 102%;
+    height: 100%;
+    list-style: none;
+    float:right;
+    padding:10px;
+    margin:5px;
+    background-color:#005C5C;
+    padding-left:4px;
+}
+
+.message{
+    width: 500px;
+    height: 270px;
+    overflow:auto;
+    background-color:#004A4A;
+}
+.icon{
+    float:right;
+    display:block;
+    background-repeat:no-repeat;
+}
+.time{
+    width:30px;
+    height:30px;
+    background-image:url('clock.png');
+}
+.delete{
+    background-image:url('delete.png');
+    width:30px;
+    height:30px;
+    margin-left:30px;
+}
+
+
+
+
+/*********FORM AND BUTTON***********/
+.button-secondary {
+    background: rgb(66, 184, 221);
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    height:62px;
+    width:62px;
+    float: right;
+    padding: 2px;
+}
+content form{
+    float: right;
+    height: 50px;
+    padding-top: 2px;
+}
+input{
+    border: 0.5px solid #d7d7d7;
+    width:435px;
+    height: 60px;
+    overflow:auto;
+}
+
