@@ -7,53 +7,61 @@ content{
     display:block;
     background-repeat:no-repeat;
 }
+header{
+    
+}
 main{
     width: 500px;
     height: 336px;
     float: right;
     margin-right:90px;
-    margin-top:42px;
-    background-color:rgb(75, 127, 149);
+    margin-top:40px;
+    background-color:#69898C;
+    border: 2px solid rgb(75, 127, 149);
 }
-.message li{
+#message li{
     width: 102%;
     height: 100%;
     list-style: none;
     float:right;
     padding:10px;
     margin:5px;
-    background-color:#005C5C;
+    background-color:#69898C;
     padding-left:4px;
 }
 
-.message{
+#message{
     width: 500px;
     height: 270px;
     overflow:auto;
-    background-color:#004A4A;
+    background-color:#013940;
 }
 .icon{
+    border: 5px solid #d7d7d7;
     float:right;
     display:block;
     background-repeat:no-repeat;
 }
 .time{
-    width:30px;
-    height:30px;
+    float:right;
+    width:25px;
+    height:25px;
     background-image:url('clock.png');
+     background-repeat:no-repeat;
 }
 .delete{
+    float:right;
     background-image:url('delete.png');
-    width:30px;
-    height:30px;
-    margin-left:30px;
+    background-repeat:no-repeat;
+    width:27px;
+    height:24px;
 }
 
 
 
 
 /*********FORM AND BUTTON***********/
-.button-secondary {
+#send {
     background: rgb(66, 184, 221);
     color: white;
     border-radius: 4px;
@@ -68,9 +76,9 @@ content form{
     height: 50px;
     padding-top: 2px;
 }
-input{
+textarea{
     border: 0.5px solid #d7d7d7;
-    width:435px;
+    width:434px;
     height: 60px;
     overflow:auto;
 }

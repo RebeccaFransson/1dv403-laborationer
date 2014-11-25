@@ -9,24 +9,27 @@
         <content>
             <header>LabbyMessage</header>
             <main>
-                <div class="message">
+                <div id="message">
                     <ul>
-                        <li>Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. <div class="delete time icons">hej</div></li>
-                        <li>Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. <div class="delete time icons">hej</div></li>
-                        <li>HÄR ÄR ETT MEDDELANDE<div class="delete time icons">hej</div></li>
+                        <li> <div class="delete icons"></div><div class="time icons"></div> Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. </li>
+                        <li> <div class="delete icons"></div><div class="time icons"></div> Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. Ge inte ut ditt lösenord till någon i chattrummet. </li>
+                        <li> <div class="delete icons"></div><div class="time icons"></div> HÄR ÄR ETT MEDDELANDE</li>
                         
                     </ul>
                 </div>
                 
                 <form>
                     
-     			    <input placeholder="            Klicka för att börja skriva ditt meddelande" type="text" id="number" /> <button class="button-secondary pure-button" id="send" type="submit">Send</button>
+     			    <textarea placeholder="            Klicka för att börja skriva ditt meddelande" type="text" id="string" ></textarea><input type="submit" name="" value="Skicka" id="send"/>
      			    <p id="value"></p>
     		    </form>
                 
             </main>
             
  		</content>
-    	  <script src="script.js"></script>
+ 		
+    	<script src="MessageBoard.js"></script>
+    	<script src="Message.js"></script>
+    	
     </body>
 </html>
