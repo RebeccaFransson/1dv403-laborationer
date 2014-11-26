@@ -2,7 +2,7 @@
 
 function Message(message, date){
     
-    this.getText = function () {//hämtar texten
+    this.getText = function(){
         return message;
     };
     
