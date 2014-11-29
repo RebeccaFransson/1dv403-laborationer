@@ -14,7 +14,7 @@ function Message(message, date){
         return date;
     };
     
-    this.setDate = function(_date){//sätter datumet till variablen the date
+    this.setDate = function(_date){//sätter datumet till variablen date
         date = _date;
     };
     
@@ -24,7 +24,7 @@ function Message(message, date){
     };
     
     Message.prototype.getHTMLText = function(){//hämtar texten och ersätter \n med <br>
-        return this.getText.replace(/\n/gi, "<br/>");
+        return this.getText(); //.replace(/[\n\r]/g, "<br />");
     };
     
     Message.prototype.getDateText = function(){ //hämtar dastumet så som det ska skrivas ut(hh,mm,ss)

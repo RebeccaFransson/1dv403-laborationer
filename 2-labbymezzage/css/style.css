@@ -19,7 +19,7 @@ main{
     background-color:#69898C;
     border: 2px solid rgb(75, 127, 149);
 }
-#message li{
+#messageTag li{
     width: 102%;
     height: 100%;
     list-style: none;
@@ -30,18 +30,13 @@ main{
     padding-left:4px;
 }
 
-#message{
+#messageTag{
     width: 500px;
     height: 270px;
     overflow:auto;
     background-color:#013940;
 }
-.icon{
-    border: 5px solid #d7d7d7;
-    float:right;
-    display:block;
-    background-repeat:no-repeat;
-}
+
 .time{
     float:right;
     width:25px;
@@ -49,7 +44,7 @@ main{
     background-image:url('clock.png');
      background-repeat:no-repeat;
 }
-.delete{
+.delete a{
     float:right;
     background-image:url('delete.png');
     background-repeat:no-repeat;
