@@ -30,24 +30,22 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
     newObjekt: function(a){//här skapas ett nytt objekt t arrayn
         var text = document.querySelector("textarea"); //texten
         a.preventDefault(); //formuläret skickas inte vidare.
-        //messageBoard.messages.push(new Message(text.value, new Date())); // Läser in texten från textrutan och skickar till funktionen "newObjekt"
-        //console.log(messageBoard.messages[0].getText());
-        //var lastPost = messageBoard.messages.length;
-        //messageBoard.outputMessage(lastPost);
         
         if( text.value !== ""){
-        messageBoard.messages.push(new Message(text.value, new Date())); // Läser in texten från textrutan och skickar till funktionen "newObjekt"
-        var lastPost = messageBoard.messages.length - 1;
-        messageBoard.outputMessage(lastPost);
+            messageBoard.messages.push(new Message(text.value, new Date())); // Läser in texten från textrutan och skickar till funktionen "newObjekt"
+            var lastPost = messageBoard.messages.length - 1;
+            messageBoard.outputMessage(lastPost);
+            messageBoard.countMessage();
 
 			text.value = "";
 		}
     },
     
     outputMessage: function(messageId){//här skrivs meddelandet ut
-        var add = document.querySelector("#messageTag").querySelector("ul");//alla ul taggar i message-div
+        var add = document.querySelector("#messageTag");//alla ul taggar i message-div
         
         //skapa nya div taggar och får ids som ska läggas till i add sedan
+        var newUl = document.createElement("ul");
         var newLi = document.createElement("li");
         var newDelete = document.createElement("div");//skapar delete - div tag
         var newA = document.createElement("a");
@@ -63,7 +61,8 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         newTime.setAttribute("class", "time");
         
         //lägger till de nya taggarna
-        add.appendChild(newLi); 
+        add.appendChild(newUl);
+        newUl.appendChild(newLi); 
         newLi.appendChild(newDelete);
         newDelete.appendChild(newA);
         newLi.appendChild(newTime);
@@ -95,15 +94,35 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
 		}
     },
     
+    countMessage: function(){//lägger till antal i existerande divtagg
+        
+        var count = messageBoard.messages.length;
+        document.querySelectorAll("#count").innerHTML = "Antal meddelanden: "+count;
+        console.log("hur många meddelanden: "+count);
+    },
+    
     remove: function(messageId){
 		messageBoard.messages.splice(messageId, 1); //på postionen messageId, ta bort ett item
+		messageBoard.readAllMessages(messageId);
+		messageBoard.countMessage();
+		
 	},
-    
-    makeMessage: function(){//skapa nytt meddelande objekt när send knapp klickad på.
+	
+	readAllMessages: function(messageId){
+	    
+		//tar bort alla meddelande(li) i ul-taggen
+		document.getElementById("messageTag").innerHTML = "";
+		//document.querySelectorAll("li").replace(/<(?:.|\n)*?>/gm, '')
+        console.log("tar bort alla meddelanden ");
         
-        
-    }
-    
+		//loppar igenom obektet och skriver ut dem som är kvar
+		for (var i = 0; i < messageBoard.messages.length; i++) {
+			messageBoard.outputMessage(i);
+		};
+		console.log("skriver ut meddelanden som är kvar");
+		
+
+	},
    
     
     
