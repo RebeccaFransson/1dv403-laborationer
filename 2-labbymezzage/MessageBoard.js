@@ -51,6 +51,7 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         var newLi = document.createElement("li");
         var newDelete = document.createElement("div");//skapar delete - div tag
         var newA = document.createElement("a");
+        var newA2 = document.createElement("a"); //delete och time kunde inte dela samma a-tag
         var newTime = document.createElement("div");
         var newPText = document.createElement("p");
         var newPDate = document.createElement("p");
@@ -58,13 +59,15 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         //sätter attribut till de nya taggarna
         newDelete.setAttribute("class", "delete");
         newA.setAttribute("href", "#");
+        newA2.setAttribute("href", "#");
         newTime.setAttribute("class", "time");
         
         //lägger till de nya taggarna
         add.appendChild(newLi); 
         newLi.appendChild(newDelete);
-        newLi.appendChild(newA);
+        newDelete.appendChild(newA);
         newLi.appendChild(newTime);
+        newTime.appendChild(newA2);
         newLi.appendChild(newPText);
         newLi.appendChild(newPDate);
         
@@ -74,13 +77,27 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         console.log(messageBoard.messages[messageId].getHTMLText());
         
         //Lägger till datument i en annan p tagg
-        newPDate.innerHTML += messageBoard.messages[messageId].getHTMLDate();
-        console.log(messageBoard.messages[messageId].getHTMLDate());
+        //newPDate.innerHTML += messageBoard.messages[messageId].getHTMLDate();
+        //console.log(messageBoard.messages[messageId].getHTMLDate());
         
         
+        //radera meddelanden
+        newA.onclick = function(e){
+			e.preventDefault();
+			if( confirm("Vill du verkligen radera meddelandet?")){
+				messageBoard.remove(messageId);
+			}
+		}
         
-        
+        newA2.onclick = function(e){
+			e.preventDefault();
+			alert(messageBoard.messages[messageId].toString());
+		}
     },
+    
+    remove: function(messageId){
+		messageBoard.messages.splice(messageId, 1); //på postionen messageId, ta bort ett item
+	},
     
     makeMessage: function(){//skapa nytt meddelande objekt när send knapp klickad på.
         

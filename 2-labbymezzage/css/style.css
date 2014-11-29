@@ -37,7 +37,7 @@ main{
     background-color:#013940;
 }
 
-.time{
+.time a{
     float:right;
     width:25px;
     height:25px;
