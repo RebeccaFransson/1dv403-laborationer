@@ -13,9 +13,18 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
     init: function(){//privat function
         
         var submit = document.getElementById("send"); //knappen
+        var text = document.querySelector("textarea"); //texten
+        
+        text.addEventListener("keypress", function(e){
+			if(!e){ e = window.event; }//tilldelar e = eventknappen i fönstret
+
+			if(e.keyCode == 13 && !e.shiftKey){ //om event = enter OCH inte-shift
+				messageBoard.newObjekt(e);
+			}
+		});
         
         submit.addEventListener("click", function(a){//när vi klickar på submit hoppar vi 
-        messageBoard.newObjekt(a);//till newObject funktionenegenskapen 
+            messageBoard.newObjekt(a);//till newObject funktionenegenskapen 
         });
                      
     },
@@ -35,11 +44,10 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
     },
     
     outputMessage: function(messageId){//här skrivs meddelandet ut
-        var add = document.querySelector("ul");//alla ul taggar i message-div
+        var add = document.querySelector("#messageTag");//hittar message-div-taggen
         
         //skapa nya div taggar och får ids som ska läggas till i add sedan
-        //var newUl = document.createElement("ul");
-        var newLi = document.createElement("li");
+        var newMess = document.createElement("div");
         var newDelete = document.createElement("div");//skapar delete - div tag
         var newA = document.createElement("a");
         var newA2 = document.createElement("a"); //delete och time kunde inte dela samma a-tag
@@ -48,8 +56,11 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         var newPDate = document.createElement("p");
         
         //sätter attribut till de nya taggarna
+        newMess.setAttribute("id", "newPost")
         newDelete.setAttribute("class", "delete");
         newA.setAttribute("href", "#");
+        newA.setAttribute("alt", "Delete-knapp");
+        newA2.setAttribute("alt", "Tid-knapp");
         newA2.setAttribute("href", "#");
         newTime.setAttribute("class", "time");
         newPText.setAttribute("class", "text");
@@ -57,15 +68,14 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         
         
         //lägger till de nya taggarna
-        //add.appendChild(newUl);
-        add.appendChild(newLi); 
-        newLi.appendChild(newDelete);
+        add.appendChild(newMess); //lägger till ny newPost i messageTag
+        newMess.appendChild(newDelete); 
         newDelete.appendChild(newA);
-        newLi.appendChild(newTime);
+        newMess.appendChild(newTime);
         newTime.appendChild(newA2);
-        newLi.appendChild(newPText);
-        newLi.appendChild(newPDate);
-        
+        newMess.appendChild(newPText);
+        newMess.appendChild(newPDate);
+        console.log("Lägger till de nya taggarna");
         
         //Lägger till texten i p taggen
         newPText.innerHTML += messageBoard.messages[messageId].getHTMLText();
@@ -73,7 +83,7 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         
         //Lägger till datument i en annan p tagg
         newPDate.innerHTML += messageBoard.messages[messageId].getDateText();
-        //console.log("Datumet: "+messageBoard.messages[messageId].getHTMLDate());
+        console.log("Datumet: "+messageBoard.messages[messageId].getDateText());
         
         
         //radera meddelanden

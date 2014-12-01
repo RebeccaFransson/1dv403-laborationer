@@ -1,56 +1,89 @@
+@import url(http://fonts.googleapis.com/css?family=La+Belle+Aurore);
+
 content{
     width: 900px;
     height: 678px;
     margin:auto;
-    border: 5px solid #d7d7d7;
+    border: 3px solid #497d93;
     background-image: url('lappymezzage.jpg');
     display:block;
     background-repeat:no-repeat;
 }
 header{
-    
+    width:300px;
+    font-family: 'La Belle Aurore', cursive;
+    float:left;
+    font-size:100px;
+    text-align: center;
+    color:#d5f0f6;
+    padding-top:40px;
+    text-shadow: 0 5px 5px rgba(0, 0, 0, 0.8);
+
 }
+header::first-letter{
+    font-size:120px;
+    color:#f24a2f;
+}
+
 main{
     width: 500px;
-    height: 336px;
+    height: 384px;
     float: right;
     margin-right:90px;
-    margin-top:40px;
-    background-color:#69898C;
     border: 2px solid rgb(75, 127, 149);
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-top:8px;
+     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.8);
 }
-#messageTag li{
-    width: 103%;
-    
-    list-style: none;
-    float:right;
-    padding:10px;
-    margin:5px;
-    background-color:#69898C;
-    padding-left:4px;
-}
-main first-child{
-    width: 95%;
-    height: 30px;
-    list-style: none;
-    float:right;
-    padding:10px;
-    margin:5px;
-    background-color: rgba(98, 198, 255, 0.5);
 
-    padding-left:4px;
+#newPost{
+    width: 96%;
+    height:20%;
+    float:right;
+    padding:5px;
+    margin:5px;
+    background-color: rgba(197, 235, 244, 0.7);;
+     -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+#dont{
+    width: 94%;
+    height: 20px;
+    text-align: center;
+    padding:10px;
+    margin:5px;
+    background-color: rgba(73, 125, 147, 0.9);
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.8);
 }
 
 #messageTag{
     width: 500px;
     height: 270px;
     overflow:auto;
-    background-color:#013940;
 }
+
 .date{
     float:right;
 }
 
+#count{
+    width: 94%;
+    text-align: center;
+    
+    background-color: rgba(73, 125, 147, 0.9);
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.8);
+    
+}
 
 
 
@@ -97,17 +130,20 @@ main first-child{
     height:62px;
     width:62px;
     float: right;
-    padding: 2px;
 }
+
 content form{
     float: right;
     height: 50px;
-    padding-top: 2px;
 }
+
 textarea{
     border: 0.5px solid #d7d7d7;
-    width:434px;
+    width:432px;
+    margin-right:2px;
     height: 60px;
     overflow:auto;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 

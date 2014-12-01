@@ -20,14 +20,26 @@ function Message(message, date){
     
     Message.prototype.toString = function(){/*presentation av objektet som ligger 
     på prototypen för att det ska skrivas ut x-antal ggr*/
-    return "Ditt meddelandet är '"+this.getText()+"'. Och skapades "+this.getDate()+".";
+    
+    //skapar variabler som tilldelas datumet per specifikt
+    var date = this.getDate();
+    
+    var months = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"];
+    var year = date.getFullYear();
+    var month = months[date.getMonth()];
+    var day = date.getDate();
+    var hour = Message.Zero(date.getHours());
+    var minute = Message.Zero(date.getMinutes());
+    var second = Message.Zero(date.getSeconds());
+    
+    return "Detta meddelande skapades "+day+" "+month+" "+year+"     Klockan "+hour+":"+minute+":"+second;
     };
     
     Message.prototype.getHTMLText = function(){//hämtar texten och ersätter \n med <br>
-        return this.getText(); //.replace(/[\n\r]/g, "<br />");
+        return this.getText().replace(/[\n\r]/g, "<br />");
     };
     
-    Message.prototype.getDateText = function(){ //hämtar dastumet så som det ska skrivas ut(hh,mm,ss)
+    Message.prototype.getDateText = function(){ //hämtar datumet så som det ska skrivas ut(hh,mm,ss)
         var thisDate = this.getDate();
         
         var seconds = Message.Zero(thisDate.getSeconds());
