@@ -71,12 +71,14 @@ main{
 
 .date{
     float:right;
+    margin-top:-15px;
 }
 
 #count{
     width: 94%;
     text-align: center;
-    
+    padding:10px;
+    margin:5px;
     background-color: rgba(73, 125, 147, 0.9);
     -moz-border-radius: 5px;
     border-radius: 5px;

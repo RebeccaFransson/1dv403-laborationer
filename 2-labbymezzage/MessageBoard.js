@@ -11,11 +11,23 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
     messages: [],//skapar tom array
     
     init: function(){//privat function
+        var main = document.querySelector('main');
+        
+        //main.addEventListener('click', function(e){ Lite tips från Andreas till meomory
+          //var klickedNode = e.target;
+        //  if(klickedNode.getAttribute('class') == 'text'){
+          //    console.log('detta var ett text-element');
+        //  }
+          //else{
+        //      console.log('det var inte en text-nod');
+          //}
+    //  });
         
         var submit = document.getElementById("send"); //knappen
         var text = document.querySelector("textarea"); //texten
         
         text.addEventListener("keypress", function(e){
+            
 			if(!e){ e = window.event; }//tilldelar e = eventknappen i fönstret
 
 			if(e.keyCode == 13 && !e.shiftKey){ //om event = enter OCH inte-shift
@@ -24,6 +36,7 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
 		});
         
         submit.addEventListener("click", function(a){//när vi klickar på submit hoppar vi 
+            
             messageBoard.newObjekt(a);//till newObject funktionenegenskapen 
         });
                      
