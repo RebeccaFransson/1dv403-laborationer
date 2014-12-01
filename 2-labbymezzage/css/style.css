@@ -20,13 +20,24 @@ main{
     border: 2px solid rgb(75, 127, 149);
 }
 #messageTag li{
-    width: 102%;
-    height: 100%;
+    width: 103%;
+    
     list-style: none;
     float:right;
     padding:10px;
     margin:5px;
     background-color:#69898C;
+    padding-left:4px;
+}
+main first-child{
+    width: 95%;
+    height: 30px;
+    list-style: none;
+    float:right;
+    padding:10px;
+    margin:5px;
+    background-color: rgba(98, 198, 255, 0.5);
+
     padding-left:4px;
 }
 
@@ -36,7 +47,15 @@ main{
     overflow:auto;
     background-color:#013940;
 }
+.date{
+    float:right;
+}
 
+
+
+
+
+/*********DELETE AND TIME BUTTONS***********/
 .time a{
     float:right;
     width:25px;
@@ -49,13 +68,27 @@ main{
     background-image:url('delete.png');
     background-repeat:no-repeat;
     width:27px;
-    height:24px;
+    height:25px;
+    
+}
+.time a:hover{
+    background-color: rgba(255, 255, 255, 0.8);
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    
+}
+.delete a:hover{
+    background-color: rgba(255, 0, 30, 0.9);
+    -moz-border-radius: 25px;
+    border-radius: 25px;
 }
 
 
 
 
-/*********FORM AND BUTTON***********/
+
+
+/*********FORM AND SEND***********/
 #send {
     background: rgb(66, 184, 221);
     color: white;

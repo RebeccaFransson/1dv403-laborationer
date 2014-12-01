@@ -17,14 +17,7 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         submit.addEventListener("click", function(a){//när vi klickar på submit hoppar vi 
         messageBoard.newObjekt(a);//till newObject funktionenegenskapen 
         });
-                     //skapa nytt objekt med text och datum
-                    
-                    /*console.log("konstrukot m. meddelande och tid: "+mess);
-                    console.log("meddelandet: "+mess.getText());
-                    mess.setText("byter text");
-                    console.log("Nytt meddelande: "+mess);
-                    console.log("datum: "+mess.getDate().getHours()+":"+ mess.getDate().getMinutes()+":"+ mess.getDate().getSeconds());
-                    */
+                     
     },
       
     newObjekt: function(a){//här skapas ett nytt objekt t arrayn
@@ -32,20 +25,20 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         a.preventDefault(); //formuläret skickas inte vidare.
         
         if( text.value !== ""){
-            messageBoard.messages.push(new Message(text.value, new Date())); // Läser in texten från textrutan och skickar till funktionen "newObjekt"
+            messageBoard.messages.push(new Message(text.value, new Date())); // skickar värderna till konstruktorn
             var lastPost = messageBoard.messages.length - 1;
-            messageBoard.outputMessage(lastPost);
-            messageBoard.countMessage();
+            messageBoard.outputMessage(lastPost);//skickar meddelandets id till metoden där jag skriver ut meddelanden
+            messageBoard.countMessage();//räknar meddelanden
 
 			text.value = "";
 		}
     },
     
     outputMessage: function(messageId){//här skrivs meddelandet ut
-        var add = document.querySelector("#messageTag");//alla ul taggar i message-div
+        var add = document.querySelector("ul");//alla ul taggar i message-div
         
         //skapa nya div taggar och får ids som ska läggas till i add sedan
-        var newUl = document.createElement("ul");
+        //var newUl = document.createElement("ul");
         var newLi = document.createElement("li");
         var newDelete = document.createElement("div");//skapar delete - div tag
         var newA = document.createElement("a");
@@ -59,10 +52,13 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         newA.setAttribute("href", "#");
         newA2.setAttribute("href", "#");
         newTime.setAttribute("class", "time");
+        newPText.setAttribute("class", "text");
+        newPDate.setAttribute("class", "date");
+        
         
         //lägger till de nya taggarna
-        add.appendChild(newUl);
-        newUl.appendChild(newLi); 
+        //add.appendChild(newUl);
+        add.appendChild(newLi); 
         newLi.appendChild(newDelete);
         newDelete.appendChild(newA);
         newLi.appendChild(newTime);
@@ -73,11 +69,11 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         
         //Lägger till texten i p taggen
         newPText.innerHTML += messageBoard.messages[messageId].getHTMLText();
-        console.log(messageBoard.messages[messageId].getHTMLText());
+        console.log("texten: "+messageBoard.messages[messageId].getHTMLText());
         
         //Lägger till datument i en annan p tagg
-        //newPDate.innerHTML += messageBoard.messages[messageId].getHTMLDate();
-        //console.log(messageBoard.messages[messageId].getHTMLDate());
+        newPDate.innerHTML += messageBoard.messages[messageId].getDateText();
+        //console.log("Datumet: "+messageBoard.messages[messageId].getHTMLDate());
         
         
         //radera meddelanden
@@ -97,7 +93,7 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
     countMessage: function(){//lägger till antal i existerande divtagg
         
         var count = messageBoard.messages.length;
-        document.querySelectorAll("#count").innerHTML = "Antal meddelanden: "+count;
+        document.querySelector("#count").innerHTML = "Antal meddelanden: "+count;
         console.log("hur många meddelanden: "+count);
     },
     
