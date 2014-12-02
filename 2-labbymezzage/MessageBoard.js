@@ -11,7 +11,7 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
     messages: [],//skapar tom array
     
     init: function(){//privat function
-        var main = document.querySelector('main');
+        //var main = document.querySelector('main');
         
         //main.addEventListener('click', function(e){ Lite tips från Andreas till meomory
           //var klickedNode = e.target;
