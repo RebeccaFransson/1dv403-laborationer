@@ -10,7 +10,7 @@ var Memory = {
         var col = 4;
         Memory.imgRandom.push(RandomGenerator.getPictureArray(row, col));
         
-        Memory.tableCreate(row, col, Memory.imgRandom, Memory.countArray); //skickar värderna över hur lång den skall vara till table-func
+        Memory.tableCreate(row, col, Memory.imgRandom); //skickar värderna över hur lång den skall vara till table-func
         Memory.click(Memory.imgRandom);
 
 
@@ -41,7 +41,7 @@ var Memory = {
                 var count = ((j * r) + i);
                 
                 img.setAttribute('src', 'pics/0.png');
-                img.setAttribute('alt', ''+array[0][count]+'');
+                img.setAttribute('class', ''+array[0][count]+'');
 
                 cell.appendChild(img);
                 row.appendChild(cell)
@@ -59,24 +59,43 @@ var Memory = {
         
        
     },
-    
+//KLICK FUNKTIONER
     click: function(array){
         var cards = document.querySelector('table');
         cards.addEventListener('click', function(e){
             Memory.flip(array, e);
         });
     },
+    counter: undefined,
     flip: function(array, e){
         
            for(var i = 0; i <= 8; i++){
                 var src = 'pics/'+i+'.png';//dimentionella arraysns nr 
                 var klickedNode = e.target;
+                
                 //loopar alla ifsatserna
-                if(klickedNode.getAttribute('alt') == i){
-                klickedNode.setAttribute('src', src);//Ger bilden en annan source och därför en annan bild
+                if(klickedNode.getAttribute('class') == i){ 
+                    klickedNode.setAttribute('src', src);//Ger bilden en annan source och därför en annan bild
+                    //var counter = undefined
+                    Memory.counter = setInterval(Memory.timer, 1000, klickedNode);
+                    console.log("COUNTER ÄR I IF + " + Memory.counter);
+                    
+                    /*
+                    if(counter > 1){
+                        clearInterval(counter);
+                    }*/
+                    
+                }
+                
            }
-           }
+    },
+    timer: function(klickedNode){
+        klickedNode.setAttribute('src', 'pics/0.png');//Ger bilden en annan source och därför en annan bild
+        console.log("COUNER ÄR I TIMER + " + Memory.counter);
+        clearInterval(Memory.counter)
+        
     }
+    
     
     
 };
