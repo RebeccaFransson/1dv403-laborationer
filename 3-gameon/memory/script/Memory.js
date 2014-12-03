@@ -66,34 +66,23 @@ var Memory = {
             Memory.flip(array, e);
         });
     },
-    counter: undefined,
+    
     flip: function(array, e){
         
-           for(var i = 0; i <= 8; i++){
+           for(var i = 0; i <= array[0].length; i++){
                 var src = 'pics/'+i+'.png';//dimentionella arraysns nr 
                 var klickedNode = e.target;
                 
                 //loopar alla ifsatserna
-                if(klickedNode.getAttribute('class') == i){ 
+                if(klickedNode.getAttribute('class') == i){ //Om bildens klass har det slumpadenummret
                     klickedNode.setAttribute('src', src);//Ger bilden en annan source och därför en annan bild
-                    //var counter = undefined
-                    Memory.counter = setInterval(Memory.timer, 1000, klickedNode);
-                    console.log("COUNTER ÄR I IF + " + Memory.counter);
-                    
-                    /*
-                    if(counter > 1){
-                        clearInterval(counter);
-                    }*/
-                    
+                    setTimeout(Memory.timer, 1000, klickedNode);
                 }
                 
            }
     },
     timer: function(klickedNode){
-        klickedNode.setAttribute('src', 'pics/0.png');//Ger bilden en annan source och därför en annan bild
-        console.log("COUNER ÄR I TIMER + " + Memory.counter);
-        clearInterval(Memory.counter)
-        
+        klickedNode.setAttribute('src', 'pics/0.png');//bilden återställs efter en sek
     }
     
     
