@@ -4,13 +4,16 @@ var Memory = {
     
     imgRandom: [],
     
+    
     go: function(){
         var row = 4;
         var col = 4;
         Memory.imgRandom.push(RandomGenerator.getPictureArray(row, col));
         
-        Memory.tableCreate(row, col, Memory.imgRandom); //skickar värderna över hur lång den skall vara till table-func
-        Memory.click(array, count);
+        Memory.tableCreate(row, col, Memory.imgRandom, Memory.countArray); //skickar värderna över hur lång den skall vara till table-func
+        Memory.click(Memory.imgRandom);
+
+
         console.log('slumpade nummer '+Memory.imgRandom);
         
     },
@@ -37,39 +40,43 @@ var Memory = {
                 var img = document.createElement('img');
                 var count = ((j * r) + i);
                 
-                var src = 'pics/'+array[0][count]+'.png';//dimentionella arraysns nr
                 img.setAttribute('src', 'pics/0.png');
                 img.setAttribute('alt', ''+array[0][count]+'');
 
                 cell.appendChild(img);
-                row.appendChild(cell);
+                row.appendChild(cell)
+                
+                
             }
             //row added to end of table body
             tblBody.appendChild(row);
+            
         }
         // append the <tbody> inside the <table>
         tbl.appendChild(tblBody);
         // put <table> in the <body>
         cards.appendChild(tbl);
         
-        return array, count;
+       
     },
     
-    click: function(array, count){
-        var src = 'pics/'+array[0][count]+'.png';//dimentionella arraysns nr
+    click: function(array){
         var cards = document.querySelector('table');
         cards.addEventListener('click', function(e){
-           var klickedNode = e.target;
-           //loopar alla ifsatserna
+            Memory.flip(array, e);
+        });
+    },
+    flip: function(array, e){
+        
            for(var i = 0; i <= 8; i++){
+                var src = 'pics/'+i+'.png';//dimentionella arraysns nr 
+                var klickedNode = e.target;
+                //loopar alla ifsatserna
                 if(klickedNode.getAttribute('alt') == i){
                 klickedNode.setAttribute('src', src);//Ger bilden en annan source och därför en annan bild
            }
            }
-           
-           
-        });
-    },
+    }
     
     
 };
