@@ -8,6 +8,7 @@ var Memory = {
     go: function(){
         var row = 4;
         var col = 4;
+        var done = row + col;
         
         
         Memory.imgRandom.push(RandomGenerator.getPictureArray(row, col));
@@ -35,7 +36,7 @@ var Memory = {
                 var count = ((j * r) + i);
                 
                 img.setAttribute('src', 'pics/0.png');
-                img.setAttribute('class', ''+Memory.imgRandom[0][count]+'');
+                img.setAttribute('a', ''+Memory.imgRandom[0][count]+'');
 
                 cell.appendChild(img);
                 row.appendChild(cell)
@@ -50,52 +51,49 @@ var Memory = {
         
        
     },
-    che: undefined,
+    opend: [],
     timeout: undefined,
     score: 0,
+    picValue: 0,
 //KLICK FUNKTIONER
     click: function(){
-        var times = 0;
         var cards = document.querySelector('table');
         cards.addEventListener('click', function(e){
-                //times++;         //plussar på antal ggr gissade
-            if(times < 2 ){
-                console.log("times är "+times);
-                Memory.flip(e);
-                Memory.write();
-                times++;
-            }else {
-                setTimeout(function() {
-                    times = 0;
-                    Memory.che = 0;
-                }, 2000);
-            }
-            
-            
+            var klickedNode = e.target; // bilden vi klickade på
+            console.log("Klickar och vår opend är "+Memory.opend.length);
+            Memory.picValue = klickedNode.getAttribute('a');//variabel som håller koll på bildens värde
+            Memory.flip(e, Memory.picValue); //Skickas till function som vänder korten
+            //Memory.write();
         });
-        
     },
     
     flip: function(e){
+        
+        if(Memory.opend.length < 2){//om vi öppnat mindre än två brickor
+            if(Memory.opend.length < 1){ //om vi bara öppnat en bricka
+                klickedNode.setAttribute('src', src);//Ger frågetecknet en  bild
+
+            }
+        }
+        
         
            for(var i = 0; i <= Memory.imgRandom[0].length; i++){ //loopar alla ifsatserna
                 var src = 'pics/'+i+'.png';//dimentionella arraysns nr 
                 var klickedNode = e.target;
                 
-
                 
-                if(klickedNode.getAttribute('class') == i){ //Om bildens klass har det slumpadenummret
-                    
+                if(klickedNode.getAttribute('a') == i){ //Om bildens klass har det slumpadenummret
+                    Memory.opend.push(klickedNode);//pushar första brickan till array
                     klickedNode.setAttribute('src', src);//Ger bilden en annan source och därför en annan bild
                     
-                    console.log("che = " + Memory.che + " i = " + i);
-                    if(Memory.che == i){
-                        Memory.score++;
-                        clearTimeout(Memory.timeout);
-                    }else{
-                        Memory.timeout = setTimeout(Memory.timer, 1000, klickedNode);
-                    }
-                    Memory.che = i;
+                    console.log("opend = " + Memory.opend[i] + " i = " + i);
+                    // if(Memory.opend[1] == i){
+                    //     //Memory.score++;
+                    //     clearTimeout(Memory.timeout);
+                    // }else{
+                    //     Memory.timeout = setTimeout(Memory.timer, 1000, klickedNode);
+                    // }
+                    
                 }
                 
            }
