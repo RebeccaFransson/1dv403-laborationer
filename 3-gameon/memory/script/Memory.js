@@ -7,6 +7,8 @@ var Memory = {
     pic1: "",
     pic2: "",
     klickedNode: [],
+    target1: "",
+    target2: "",
     
     go: function(){
         var row = 4;
@@ -69,8 +71,9 @@ var Memory = {
     },
     
     flip: function(e){
-        Memory.klickedNode.push(e.target); // sparar bilden vi klickade på
+        Memory.klickedNode.push(e.target.getAttribute('a')); // sparar bilden vi klickade på
         var link = e.target;
+        console.log("arrayn med värdet på den klickade"+Memory.klickedNode);
         Memory.picValue = link.getAttribute('a');//variabel som håller koll på bildens värde
         var src = "pics/"+Memory.picValue+".png";
         console.log("värdet på bilden vi klickade på: "+Memory.picValue);
@@ -80,11 +83,14 @@ var Memory = {
             console.log("Här har vi bara klickat på en");
                 link.setAttribute('src', src);//Ger frågetecknet en  bild
                 Memory.pic1 = Memory.picValue;// pic1 tilldelas den värdet för den första bilden
+                Memory.target1 = e.target; //sparar den klickade noden
+                console.log("Skriver ut target1:  "+Memory.target1);
                 Memory.times++;
             }else{
                 console.log("Här har vi bara klickat på TVÅ");
                link.setAttribute('src', src);
                 Memory.pic2 = Memory.picValue;// andra bilden
+                Memory.target2 = e.target; //sparar den klickade noden
                 Memory.times++;
                 }if(Memory.times === 2 && Memory.pic1 === Memory.pic2){//lika
                     console.log("Dessa två är lika "+Memory.pic1+" är det samma som "+Memory.pic2);
@@ -94,7 +100,7 @@ var Memory = {
                 }
             }
             if(Memory.times === 2){
-                    setTimeout(Memory.timer, 1000, link);
+                    setTimeout(Memory.timer, 1000);
                 }
             
         
@@ -118,15 +124,19 @@ var Memory = {
                     
            
     },
+    
     timer: function(link){
         console.log("Vänder tillbaka");
         if(Memory.pic1 != Memory.pic2){//om de ej är lika vänd tillbaka dem båda
-            if(Memory.klickedNode[0].getAttribute('a') == Memory.pic1){ 
+            if(Memory.target1.getAttribute('a') === Memory.pic1 && Memory.target2.getAttribute('a') === Memory.pic2){ 
                 console.log("Vänder tillbaka klickednode med attribut "+ Memory.klickedNode[0]+"Som är samma som"+Memory.pic1);
-                link.setAttribute('src', 'pics/0.png');//bilden återställs efter en sek
-            }else if(Memory.klickedNode[1].getAttribute('a') == Memory.pic1){
-                link.setAttribute('src', 'pics/0.png');//bilden återställs efter en sek
+                Memory.target1.setAttribute('src', 'pics/0.png');//bilderna återställs efter en sek
+                Memory.target2.setAttribute('src', 'pics/0.png');
             }
+            //if(){
+            //    link.setAttribute('src', 'pics/0.png');//bilden återställs efter en sek
+             //   console.log("Vänder tillbaka klickednode med attribut "+ Memory.klickedNode[1]+"Som är samma som"+Memory.pic2);
+            //}
         }
         
     },
