@@ -9,6 +9,8 @@ var Memory = {
     klickedNode: [],
     target1: "",
     target2: "",
+    link1:"",
+    link2: "",
     score: 0,
     timeout: undefined,
     picValue: 0,
@@ -22,7 +24,7 @@ var Memory = {
         Memory.imgRandom.push(RandomGenerator.getPictureArray(row, col));
         
         Memory.tableCreate(row, col); //skickar värderna över hur lång den skall vara till table-func
-        Memory.click();
+        //Memory.click();
 
         console.log('slumpade nummer '+Memory.imgRandom);
         
@@ -47,14 +49,14 @@ var Memory = {
                 img.setAttribute('src', 'pics/0.png');
                 img.setAttribute('a', ''+Memory.imgRandom[0][count]+'');
                 a.setAttribute('href', '#');
-                //a.setAttribute('a', ''+Memory.imgRandom[0][count]+'');
+                a.setAttribute('a', ''+Memory.imgRandom[0][count]+'');
                 //a.setAttribute('src', 'pics/0.png');
 
                 cell.appendChild(a);
                 a.appendChild(img);
                 row.appendChild(cell)
                 
-                
+                a.addEventListener('click', Memory.flip);
             }
             tblBody.appendChild(row);
             
@@ -67,35 +69,34 @@ var Memory = {
     
     
 //KLICK FUNKTIONER
-    click: function(){
-        var cards = document.querySelector('table');
-        cards.addEventListener('click', function(e){
-            console.log("Klickar och vår opend är "+Memory.times);
-            Memory.flip(e); //Skickas till function som vänder korten
-            Memory.write();
-            e.preventDefault();
-        });
+    // click: function(){
+    //     var cards = document.querySelector('table');
+    //     cards.addEventListener('click', function(e){
+    //         console.log("Klickar och vår opend är "+Memory.times);
+    //         Memory.flip(e); //Skickas till function som vänder korten
+    //         Memory.write();
+    //         e.preventDefault();
+    //     });
         
-    },
+    // },
     
     flip: function(e){
-        var link;
-        var img = e.target.firstChild;
+        //var link;
+        //var img = e.target.firstChild;
          //for(var i = 0; i < Memory.imgRandom.length; i++){
            //  console.log('forloop');
-         if(e.target.getAttribute('href') === '#'){ //Om det är en sträng.   Ifsatsen skall bestämma vad link ska betyda, antingen tangent eller mus
-                 console.log('tangentklick på a-tag '+e.target);
-                 link = e.target; 
-             }else{
-                 console.log('musklick på IMG '+e.target);
-                 link = img;//img
-             }
+         //if(e.target.getAttribute('href') === '#'){ //Om det är en sträng.   Ifsatsen skall bestämma vad link ska betyda, antingen tangent eller mus
+           //      console.log('tangentklick på a-tag '+e.target);
+             //    link = e.target; 
+             //}else{
+               //  console.log('musklick på IMG '+e.target);
+                // link = img;//img
+             //}
              
         // } //Måste ha en ifsats. annars fungerar inte både mus och tangentbord.
         
-        
+        var link = this;
         Memory.klickedNode.push(link.getAttribute('a')); // sparar bilden vi klickade på
-        //var link = e.target;
         //var alink = e.target.firstChild;
         console.log("arrayn med värden på de vi klickat på "+Memory.klickedNode);
         Memory.picValue = link.getAttribute('a');//variabel som håller koll på bildens värde
@@ -108,19 +109,25 @@ var Memory = {
                 console.log("Här har vi bara klickat på en");
                 link.setAttribute('src', src);//Ger frågetecknet en  bild
                 Memory.pic1 = Memory.picValue;// pic1 tilldelas den värdet för den första bilden
-                Memory.target1 = link; //sparar den klickade noden
+                Memory.target1 = link;//sparar den klickade bilden
+                Memory.link1 = link.parentElement;//sparar den klickade a-taggen
                 console.log("Skriver ut target1:  "+Memory.target1);
+                console.log("Skriver ut link1:  "+Memory.link1);
+                
+                this.removeEventListener('click', Memory.flip);
                 
             }else{
                 Memory.times++;
                 console.log("Här har vi bara klickat på TVÅ");
                 link.setAttribute('src', src);
                 Memory.pic2 = Memory.picValue;// andra bilden
-                Memory.target2 = e.target; //sparar den klickade noden
+                Memory.target2 = link; //sparar den klickade noden
+                Memory.link2 = link.parentElement;//sparar den klickade a-taggen
                 
                 }if(Memory.times === 2 && Memory.pic1 === Memory.pic2 && Memory.target1 != Memory.target2){//lika
                     Memory.score++;
                     console.log("Dessa två är lika "+Memory.pic1+" är det samma som "+Memory.pic2+" MITT SCORE ÄR: "+Memory.score);
+                    this.removeEventListener('click', Memory.flip);
                     Memory.times = 0;
                 }else if(Memory.times === 2){//ej lika vända igen
                     //Memory.target1.setAttribute('src', 'pics/0.png');
@@ -139,19 +146,20 @@ var Memory = {
     },
     
     timer: function(){
-        console.log("Vänder tillbaka");
         if(Memory.pic1 != Memory.pic2){//om de ej är lika vänd tillbaka dem båda
-        console.log("Ej lika");
+        console.log("Ej lika, Vänder tillbaka");
             //if(Memory.target1.getAttribute('a') === Memory.pic1 && Memory.target2.getAttribute('a') === Memory.pic2){ 
-                console.log("Vänder tillbaka klickednode med attribut "+ Memory.klickedNode[0]+"Som är samma som"+Memory.pic1);
                 Memory.target1.setAttribute('src', 'pics/0.png');//bilderna återställs efter en sek
                 Memory.target2.setAttribute('src', 'pics/0.png');
                 Memory.times = 0;
+                Memory.link1.addEventListener('click', Memory.flip);
+                Memory.link2.addEventListener('click', Memory.flip);
             //}
-        }else if(Memory.target1 != Memory.target2){//lika vänta 1 sec fortsätt spelet
+        }else if(Memory.target1 === Memory.target2){//lika vänta 1 sec fortsätt spelet
         console.log("Väldigt lika, ny timer");
             setTimeout(1000);
             Memory.times = 0;
+            //Memory.target1.removeEventListener('click', Memory.flip);
         }else{
             Memory.target1.setAttribute('src', 'pics/0.png');//bilderna återställs efter en sek
             Memory.target2.setAttribute('src', 'pics/0.png');
@@ -162,7 +170,7 @@ var Memory = {
      write: function(){
          var p = document.querySelector('p');
          p.innerHTML = "Antal poäng:<br>"+(Memory.score);
-         if(Memory.score === 8){
+         if(Memory.score === Memory.imgRandom.length){
              var done = document.querySelector('#done');
              done.innerHTML = "Grattis! Du har vunnit, och klarade det på  försök!";
          }
