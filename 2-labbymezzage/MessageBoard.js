@@ -25,7 +25,7 @@ var messageBoard = {//här ska vara en metod som kommer trigga igång de andra m
         
         var submit = document.getElementById("send"); //knappen
         var text = document.querySelector("textarea"); //texten
-        
+        console.log(submit);
         text.addEventListener("keypress", function(e){
             
 			if(!e){ e = window.event; }//tilldelar e = eventknappen i fönstret

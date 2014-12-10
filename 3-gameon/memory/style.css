@@ -1,32 +1,46 @@
+
 #content{
-    width: 340px;
-    height: 285px;
+    width: 27%;
+    height: 550px;
     margin:auto;
-    border: 3px solid pink;
+    border: 2px solid #90d8aa;
+    background-color:#90d8aa;
 }
-header{
-    font-style:oblique;
-    margin: 20px;
-    font-size:2em;
-    color:pink;
+h1{
+    font-family: 'Economica', sans-serif;
+    margin-top: 20px;
+    margin-left: 100px;
+    font-size:4em;
+    color:white;
+    text-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 }
+
 #cards img{
-    width:30px;
-    height: 30px;
+    width:100px;
+    height:100px;
+    margin:auto;
 }
+
 table, th, td{
-    border: 2px solid pink;
+    border: 2px solid white;
+    background-color:#d1cbab;
+}
+td{
+    padding:0;
 }
 table{
-    margin:20px;
+    margin:auto;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+
 }
+
 #points{
-    position:relative;
-    bottom:100px;
-    left:200px;
+    position:absolute;
+    bottom:500px;
+    left:1040px;
     width: 75px;
     height: 75px;
-    background-color:pink;
+    background-color:#90d8aa;
     -moz-border-radius: 35px;
     border-radius: 35px;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.8);
@@ -37,17 +51,42 @@ table{
     
 }
 #points p{
-    padding-top:10px;
+    position:relative;
+    bottom:10px;
+    font-family: 'Economica', sans-serif;
+    text-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 #done{
-    width: 320px;
-    position:relative;
-    bottom:100px;
-    right:20px;
-    background-color: pink;
+    padding-top:10px;
+    font-family: 'Economica', sans-serif;
+    text-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    width: 370px;
+    background-color: #90d8aa;
     font-style:oblique;
+    text-align:center;
     margin: 20px;
     font-size:2em;
     color:white;
     padding:10px;
 }
+form{
+    margin-left:90px;
+}
+#send {
+    background: #d1cbab;
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    height:30px;
+    width:70px;
+}
+input{
+    background-color: rgba(255, 255, 255, 0.5);
+    width:100px;
+}
+.hidden{
+    display:none;
+}
+/*position:relative;
+    bottom:100px;
+    right:22px;
