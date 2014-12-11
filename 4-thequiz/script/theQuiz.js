@@ -31,8 +31,6 @@ window.onload = function()  {
         
         xhr.send(null);
         
-    
-    
 }
 
 var send = function(xhr, quest){
@@ -45,7 +43,30 @@ var send = function(xhr, quest){
             id: 1,
             answer: input,
         }
+        
         xhr.send(JSON.stringify(product));
+        
+        xhr.onreadystatechange = function(){ //denna kod skall köras när vi får ett svar
+            console.log('svar');
+            var wrong = document.getElementById('wrong');
+            var right = document.getElementById('right');
+            var answer = JSON.parse(xhr.responseText);
+            console.log('OK meddelande : '+answer.message); //svarstext
+            if(answer.nextURL != null){
+                //right.setAttribute('class', 'hidden');
+                right.setAttribute('class', '');
+                right.innerHTML = answer.message;
+                console.log('FEL!');
+            }else{
+                wrong.setAttribute('class', '');
+                wrong.innerHTML = answer.message;
+                
+                console.log('RÄTT!');
+                
+            }
+        }
+                
+        //om svaret är rätt gå vidare till nästa fråga
                 
         // xhr.open('GET', quest.nextURL, true);
         // var answer = JSON.parse(xhr.responseText);
