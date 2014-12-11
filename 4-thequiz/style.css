@@ -1,21 +1,35 @@
+body{
+    background-image: url('BG.jpg');
+    color:#8B6B45;
+}
 #content{
     width:300px;
     margin:auto;
-    border: 1px solid black;
+    margin-top:250px;
+    border: 2px solid #8B6B45;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+    background-color:rgba(0, 63, 72, 0.9);
+    
 }
 h1{
     width: 300px;
     text-align:center;
+    border:rgba(0, 63, 72, 0.5);
+    border-bottom:1px solid #8B6B45;
+    padding-bottom:20px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
-#question{
+#nr{
     width: 270px;
-    height:100px;
     margin:auto;
-    border: 1px solid black;
+    margin-bottom:20px;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
     text-align:center;
     font-size:1em;
+    background-color:rgba(0, 63, 72, 0.5);
+    border:1px solid rgb(0, 63, 72);
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 #quest{
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -28,22 +42,46 @@ form{
     height:70px;
     margin:auto;
 }
-textarea{
-    width:266px;
+#textvalue{
+    width:170px;
     position:relative;
-    right:1px;
-    bottom:1px;
-    border: 1px solid black;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+    left:50px;
+    border:rgba(0, 63, 72, 0.5);
+    border-bottom:2px dotted #8B6B45;
     text-align:center;
+    font-size:1em;
+    background-color:rgba(0, 63, 72, 0.5);
+    color: #8B6B45;
 }
 #send{
-    float:right;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.8);
+    width:70px;
+    color: #8B6B45;
+    margin-left:95px;
+    border:none;
+    font-size:1.5em;
+    background-color:rgba(0, 63, 72, 0.1);
+    
 }
 #send:hover{
-    background-color:rgba(172, 205, 225, 0.6);
+    color:#8D6541;
+    text-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
+::-webkit-input-placeholder {
+   color: #8B6B45;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #8B6B45;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #8B6B45;  
+}
+
+:-ms-input-placeholder {  
+   color: #8B6B45;  
+}
+
 .answer{
     width:300px;
     font-size:1.5em;
@@ -54,6 +92,7 @@ textarea{
     border-radius: 10px;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.8);
 }
+
 h2{
     font-size:1.8em;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);

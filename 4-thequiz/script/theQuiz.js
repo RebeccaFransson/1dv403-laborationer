@@ -1,28 +1,53 @@
 window.onload = function()  {
     
-    document.getElementById('send').addEventListener('click', function(){//hämtar ut knapp, sätter klick
-        
+    
         var xhr = new XMLHttpRequest();
         
         xhr.onreadystatechange = function(){ //denna kod skall köras när vi får ett svar
+            console.log('svar');
+            if(xhr.readyState === 4 && xhr.status === 200){//allt ok
+                
+                var quest = JSON.parse(xhr.responseText);
+                console.log('OK'+quest.question); //svarstext
+                
+                document.getElementById('quest').innerHTML = quest.question;
+                
+                document.getElementById('send').addEventListener('click', function(e){//hämtar ut knapp, sätter klick
+                e.preventDefault();
+                send(xhr, quest);
+            });
             
-            if(xhr.redyState === 4){
-                console.log('Klar');
-                if(xhr.status === 200){
-                    console.log('OK');
-                }else if(xhr.status === 404){
+            
+            }else if(xhr.status === 404){
                     console.log('Hittades ej');
-                }else{
-                    console.log('Annat fel' + xhr.status);
-                }
+            }else{
+                console.log('Fått tillbaka svar men annat fel ' + xhr.readyState);
             }
+            
             
         };
         
-        xhr.open('GET', "http://vhost3.lnu.se:20080", true); //asynkromt anrop
+        xhr.open('GET', "http://vhost3.lnu.se:20080/question/1", true); //asynkromt anrop
         
         xhr.send(null);
         
-    });
     
+    
+}
+
+var send = function(xhr, quest){
+        var input = document.getElementById('textvalue').value;
+                
+        xhr.open('POST', quest.nextURL, true);//skicka data till nästa url
+        xhr.setRequestHeader('Content-Type', 'application/json');//talar om att ypen är json
+        
+        var product = {
+            id: 1,
+            answer: input,
+        }
+        xhr.send(JSON.stringify(product));
+                
+        // xhr.open('GET', quest.nextURL, true);
+        // var answer = JSON.parse(xhr.responseText);
+        // console.log(answer);
 }
