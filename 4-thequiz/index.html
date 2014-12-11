@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="style.css" />
+    <title>JavaScript - TheQuiz</title>
+</head>
+    <body>
+        <div id="content">
+        <header><h1>TheQuiz</h1></header>
+        <div id="question">
+            Fråga nr 1
+            <div id="quest">vad är 1+1?</div>
+            
+        </div>
+        <form>
+     		<textarea id="nr2" placeholder="Skriv ditt svar här" type="text" id="textvalue" ></textarea>
+     		<input type="submit" value="Svara" id="send"/>
+     		<p id="value"></p>
+        </form>
+        
+        <div id="wrong" class="hidden" >
+            <h2>Fel svar</h2> försök igen!
+        </div>
+        <div id="right" class="hidden" >
+            <h2>Rätt svar</h2> nu svara på nästa fråga!
+        </div>
+
+ 		</div>
+ 		<script src="script/theQuiz.js"></script>
+    </body>
+</html>
