@@ -82,15 +82,16 @@ form{
    color: #8B6B45;  
 }
 
-.answer{
+#answer{
     width:300px;
     font-size:1.5em;
     text-align:center;
     position:absolute;
-    top:270px;
+    top:510px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.8);
+     background-color:rgba(0, 63, 72, 0.9);
 }
 
 h2{
@@ -98,11 +99,6 @@ h2{
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     margin:0;
 }
-#wrong{
-    background-color:red;
-}
-#right{
-    background-color:green;
 }
 .hidden{
     display:none;
