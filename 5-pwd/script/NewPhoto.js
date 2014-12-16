@@ -8,11 +8,9 @@ function NewPhoto(wind){
 
             xhr.onreadystatechange = function(){ //denna kod skall köras när vi får ett svar
                 if(xhr.readyState === 4 && xhr.status === 200){//allt ok
-                    wind.bottom.innerHTML = ' ';//tar bort 'laddar..' när allt hämtas
+                    //wind.bottom.innerHTML = ' ';//tar bort 'laddar..' när allt hämtas
                     console.log('Hittades');
                     var array = JSON.parse(xhr.responseText);
-                    
-                    //loopa array
                     
                     for(var i = 0; i < array.length; i++){//skapar tum-bilderna
                         console.log('i forloop- skapar bilderna');
@@ -20,26 +18,41 @@ function NewPhoto(wind){
                         pic.setAttribute('src', array[i].thumbURL);
                         pic.setAttribute('width', array[i].thumbWidth);
                         pic.setAttribute('height', array[i].thumbHeight);
+                        var picA = document.createElement('a');
+                        picA.setAttribute('href', '#');
                         var picBox = document.createElement('div');
                         picBox.setAttribute('class', 'picBox');
-                        wind.content.appendChild(picBox);
+                        wind.content.appendChild(picA);
+                        picA.appendChild(picBox);
                         picBox.appendChild(pic);
                         
-                        //wind.content.innerHTML = pic;
+                        pic.data = array[i]; //sparar arrayn så att jag kan få ut värdena för den stora bilden sen
                     }
+                    wind.content.addEventListener('click', function(e){
+                           var klickedNode = e.target;
+                           if(klickedNode.getAttribute('src') != null){
+                               var picwin = new Window(wind.desktop, 'Förstorngsglas');//skapa nytt fönster med bilden Skapar fönstret på=(wind.desktop = skrivbordet)
+                               
+                               var picBig = document.createElement('img');
+                                picBig.setAttribute('src', klickedNode.data.URL);
+                                picBig.setAttribute('width', klickedNode.data.width);
+                                picBig.setAttribute('height', klickedNode.data.height);
+                                //se till att fönstret anpassar sig efter bilden
+                                
+                            picwin.content.appendChild(picBig);
+                           }
+                    });
+                        
                     
-                    //wind.content.innerHTML = array[1].URL;
-                    //.getElementById('send').onclick = function(e){//hämtar ut knapp, sätter klick
-                    
-                    //e.preventDefault();
                 
                 }else if(xhr.status === 404){
                         console.log('Hittades ej');
                 }else{
-                    // var load = document.createElement('img');
-                    // load.setAttribute('src', 'pics/load.gif');
-                    // load.setAttribute('width', '100px');
-                    // load.setAttribute('height', '50px');
+                    var load = document.createElement('img');
+                    load.setAttribute('src', 'pics/load.gif');
+                    load.setAttribute('width', '100px');
+                    load.setAttribute('height', '50px');
+                    wind.bottom.appendChild(load);
 
                     wind.bottom.innerHTML = 'Laddar...';
                 }

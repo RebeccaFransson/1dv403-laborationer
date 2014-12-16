@@ -11,6 +11,4 @@ window.onload = function(){
 
    //var wind = new Window(desk, 'Prov');
    
-   
-   
 };

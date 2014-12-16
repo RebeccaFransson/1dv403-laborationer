@@ -16,7 +16,7 @@ Desktop.prototype.addApp = function(pic, app, namn){//lägga till img, onklick p
     document.querySelector('#meny').appendChild(a);
     a.appendChild(img);
     
-    var self = this;//spara gamla this
+    var self = this;//spara gamla this som är knappen
     
     a.onclick = function(){
         var wind = new Window(self, namn);

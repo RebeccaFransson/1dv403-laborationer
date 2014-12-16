@@ -1,6 +1,7 @@
 "use strict";
 
 function Window(desk, namn){
+    this.desktop = desk;
     var template = document.querySelector('#temp');
     var windowtemp = template.content.querySelector('.window');
     this.w = windowtemp.cloneNode(true);

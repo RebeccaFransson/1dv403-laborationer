@@ -1,6 +1,6 @@
 .window{
     position:absolute;
-    width:450px;
+    width:410px;
     border:2px solid rgba(143,143,143,0.8);
     -moz-border-radius: 13px;
     border-radius: 13px;
@@ -22,11 +22,15 @@
 
 .close{
     width:25px;
-    height:100%;
-    background-image: url('pics/close.png');
-    background-repeat:no-repeat;
+    height:70%;
+    border-style: solid;
+    border-left: thick double rgba(255, 255, 255,0.4);
+    border-right: thick double rgba(255, 255, 255,0.4);
+    border-bottom: thick double rgba(255, 255, 255,0.4);
+    border-top: none;
+    border-radius: 5px;
     float:right;
-    margin:auto;
+    margin-right:5px;
     transition-property:transform;
 }
 .close:hover{
@@ -34,23 +38,25 @@
     background-repeat:no-repeat;
 }
 .content{
-    padding:auto;
+    display:block;
+    margin:auto;
     width:100%;
     background-color:rgba(242, 242, 242,0.95);
-    max-height: 400px;
+    max-height: 350px;
     overflow:auto;
 }
 .picBox{
-    width:85px;
+    width:75px;
     height:70px;
-    border:1px solid rgba(143,143,143,0.8);
-    border-radius: 7px;
+    margin-left:20px;
+    margin-top:3px;
     float: left;
-    margin:7px;
-    background-color:rgba(142,102,66, 0.7);
 }
 .picBox img{
-   
+    display:block;
+    margin:auto;
+    border-radius: 7px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
 
 }
 .status{
