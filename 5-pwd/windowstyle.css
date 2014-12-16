@@ -1,6 +1,6 @@
 .window{
     position:absolute;
-    width:300px;
+    width:450px;
     border:2px solid rgba(143,143,143,0.8);
     -moz-border-radius: 13px;
     border-radius: 13px;
@@ -34,14 +34,28 @@
     background-repeat:no-repeat;
 }
 .content{
+    padding:auto;
     width:100%;
     background-color:rgba(242, 242, 242,0.95);
-    height:300px;
+    max-height: 400px;
+    overflow:auto;
+}
+.picBox{
+    width:85px;
+    height:70px;
+    border:1px solid rgba(143,143,143,0.8);
+    border-radius: 7px;
+    float: left;
+    margin:7px;
+    background-color:rgba(142,102,66, 0.7);
+}
+.picBox img{
+   
+
 }
 .status{
     width:100%;
     padding-top:10px;
-    background-color:rgba(142,102,66, 0.7);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     text-align:center;
