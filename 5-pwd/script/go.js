@@ -5,10 +5,10 @@ window.onload = function(){
    
    desk.startTime();
    
-   desk.addApp('pics/photo.png', NewPhoto, 'Bilder'); // skickar med bildsökväg och appen
-   desk.addApp('pics/game.png', NewMemory, 'Memory'); // skickar med bildsökväg och appen
+   desk.addApp('pics/photo.png', NewPhoto, 'Bilder', '#E8C07B','#e0ab50'); // skickar med bildsökväg och appen, namn och färger
+   desk.addApp('pics/game.png', NewMemory, 'Memory', '#d7807d','#CB5A56'); // skickar med bildsökväg och appen
    //desk.addApp('pics/chat.png', NewMemory, 'CatChat');
 
-   //var wind = new Window(desk, 'Prov');
+   //var wind = new Window(desk, 'Google', '#e0ab50','#E8C07B');
    
 };

@@ -1,5 +1,7 @@
 "use strict";
+//skapa nytt memory spel
 
 function NewMemory(){
-    console.log('Skapar ny memory-app');
-}//skapa nytt memory spel
+    console.log('skapar memory');
+   
+}
