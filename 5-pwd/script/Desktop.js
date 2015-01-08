@@ -14,19 +14,17 @@ Desktop.prototype.addApp = function(pic, app, namn, colorbot, colortop){//lägga
     img.setAttribute('width', '50px');
     img.setAttribute('height', '50px');
     var a = document.createElement('a');
-    var aSpan = document.createElement('span');
-    aSpan.innerHTML = namn;
     a.setAttribute('href', '#');
     a.setAttribute('class', 'tooltip');
+    a.setAttribute('title', namn);
     document.querySelector('#meny').appendChild(a);
     a.appendChild(img);
-    a.appendChild(aSpan);
     
     var self = this;//spara gamla this som är knappen
     
     //skapar fönster med appen man klickat på
     a.onclick = function(){
-        var wind = new Window(self, namn, colorbot, colortop);
+        var wind = new Window(pic, self, namn, colorbot, colortop);
         var photo = new app(wind);
         
     };

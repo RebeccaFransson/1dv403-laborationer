@@ -1,35 +1,53 @@
 "use strict";
 
-function Window(desk, namn, colorbot, colortop, w, h){
+function Window(pic, desk, namn, colorbot, colortop, w, h){
     //default storlek 
     w = w || "350";
     h = h || "410";
     
+    console.log('w: '+w+' h: '+h)
     this.desktop = desk;
     var template = document.querySelector('#temp');
     var windowtemp = template.content.querySelector('.window');
     this.w = windowtemp.cloneNode(true);
     
+    this.content = this.w.querySelector('.content');
+    this.statusX = this.w.querySelector('.statusX');
+    
     //sätter storlek på nytt fönster
-    this.w.style.width = w+'px';
-    this.w.style.height = h+'px';
+    this.content.style.width = w+'px';
+    this.content.style.height = h+'px';
     
     //skickar med top och left till funktionen som sätter style
     this.moveWind(10, 10);
     
-    this.w.querySelector('.topbar').innerHTML = namn + this.w.querySelector('.topbar').innerHTML;
-    this.w.querySelector('.topbar').setAttribute('style', 'background-color:'+colortop);//sätt färg på  topbar
+    var topPic = document.createElement('img');
+    topPic.setAttribute('src', pic);
+    topPic.setAttribute('width', '25px');
+    topPic.setAttribute('height', '25px');
+    var topbar = this.w.querySelector('.topbar');
+    topbar.appendChild(topPic);
+    
+    topbar.innerHTML += namn;
+    topbar.setAttribute('style', 'background-color:'+colortop);//sätt färg på  topbar
     this.w.querySelector('.statusX').setAttribute('style', 'background-color:'+colorbot);
     desk.content.appendChild(this.w);
     
-    this.content = this.w.querySelector('.content');
-    this.statusX = this.w.querySelector('.statusX');
     
-    var self = this;
+    
+    var self = this;//gör om this så vi kan använda detta this i functionen under(utan att det ska bli this i den funktionen)
+    //stänger fönstret
     var close = this.w.querySelector('.close');
-    close.onclick = function(){//klick på stänga-knappen, skickar till prototypen.close.
+    close.onclick = function(){
         self.close();
     };
+    
+    this.focus();
+    //on klick på hela fönstret z-index = 99
+    this.w.addEventListener('click', function(e){
+        self.focus();
+        console.log('klick på fönstret');
+    });
 }
 
 Window.prototype.close = function(){//plockar bort kopian utav templaten
@@ -39,7 +57,7 @@ Window.prototype.close = function(){//plockar bort kopian utav templaten
 Window.prototype.moveWind = function(t, l){
     //sätter top och left på första window
     var top = Window.globalTop + 29;
-    var left = Window.globalLeft + 20;
+    var left = Window.globalLeft + 29;
     console.log('i funk top: '+top+' left: '+left)
     
     this.w.style.top = top+'px';
@@ -52,7 +70,14 @@ Window.prototype.moveWind = function(t, l){
 
 // global variabel med top och left
 Window.globalTop = 0;
-console.log('top: '+Window.globalTop);
 Window.globalLeft = 0;
+Window.globalIndex = 0;
 
+Window.prototype.focus = function(){
+    //on klick på hela fönstret z-index = 99
+    var indexCount = 1 + Window.globalIndex;
+    this.w.style.zIndex = indexCount;
+    
+    Window.globalIndex = indexCount;
+};
 //http://tech.pro/tutorial/650/javascript-draggable-elements   DRAGEBLE ELEMENTS

@@ -4,8 +4,6 @@ function NewPhoto(wind){
     
     var xhr = new XMLHttpRequest();
     
-        //document.createElement('img').setAttribute('src', img.URL);
-
             xhr.onreadystatechange = function(){ //denna kod skall köras när vi får ett svar
                 if(xhr.readyState === 4 && xhr.status === 200){//allt ok
                     wind.statusX.innerHTML = ' ';//tar bort 'laddar..' när allt hämtas
@@ -35,15 +33,14 @@ function NewPhoto(wind){
                         picBox.setAttribute('class', 'picBox');
                         //skapar tooltip
                         picA.setAttribute('class', 'tooltip');
-                        var toolSpan = document.createElement('span');
-                        toolSpan.innerHTML = 'Klicka för att förstora i nytt fönster <br> Högerklicka för att sätta som bakgrund';
+                        picA.setAttribute('title', 'Klicka för att förstora i nytt fönster Högerklicka för att sätta som bakgrund')
                         
-                        wind.content.appendChild(picA);
-                        picA.appendChild(picBox);
-                        picBox.appendChild(pic);
-                        picA.appendChild(toolSpan);
                         
-                        //sätter max height och width från den sparade arrayn i CSS 
+                        wind.content.appendChild(picBox);
+                        picBox.appendChild(picA);
+                        picA.appendChild(pic);
+                        
+                        //sätter max height och width för tumnagefrån den sparade arrayn i CSS 
                         //tvungen att skapa ny variabel.
                         var picBoxWidth = Math.max.apply(Math, arrayWidth)+'px';
                         var picBoxHeight = Math.max.apply(Math, arrayHeight)+'px';
@@ -53,22 +50,19 @@ function NewPhoto(wind){
                         //picBox.setAttribute('height', picBoxHeight);
                          
                         pic.data = array[i]; //sparar arrayn så att jag kan få ut värdena för den stora bilden sen
-                        
-                        
                     }
-                    
                     
                     //nytt fönster för stora bilder 
                     wind.content.addEventListener('click', function(e){
                            var klickedNode = e.target;
                            if(klickedNode.getAttribute('src') != null){
-                               var picwin = new Window(wind.desktop, 'Förstorngsglas', '#858585', '#5f5f5f', klickedNode.data.width, klickedNode.data.height);//skapa nytt fönster med bilden Skapar fönstret på=(wind.desktop = skrivbordet)
+                               //wind.content.style.height = '';
+                               var picwin = new Window('pics/bigger.png' ,wind.desktop, 'Förstorngsglas', '#858585', '#5f5f5f', klickedNode.data.width, klickedNode.data.height);//skapa nytt fönster med bilden Skapar fönstret på=(wind.desktop = skrivbordet)
                                
                                var picBig = document.createElement('img');
                                 picBig.setAttribute('src', klickedNode.data.URL);
                                 picBig.setAttribute('width', klickedNode.data.width);
                                 picBig.setAttribute('height', klickedNode.data.height);
-                                //se till att fönstret anpassar sig efter bilden
                                 
                             picwin.content.appendChild(picBig);
                            }
@@ -82,7 +76,6 @@ function NewPhoto(wind){
                              document.querySelector('body').style.backgroundImage = 'url('+klickedNodeRight.data.URL+')';
                              document.querySelector('body').style.backgroundSize = 'auto';
                          }
-                        
                         console.log('högerklick');
                     });
                 
@@ -91,13 +84,11 @@ function NewPhoto(wind){
                 }else{
                     wind.statusX.innerHTML = 'Laddar... ';
                     var load = document.createElement('img');
-                    load.setAttribute('src', 'pics/load.gif');
-                    load.setAttribute('width', '150px');
-                    load.setAttribute('height', '100px');
+                    load.setAttribute('src', 'pics/load1.gif');
+                    load.setAttribute('width', '20px');
+                    load.setAttribute('height', '20px');
                     wind.statusX.appendChild(load);
                     console.log(load);
-
-                    
                 }
             };
             
