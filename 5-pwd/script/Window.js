@@ -10,7 +10,7 @@ function Window(pic, desk, namn, colorbot, colortop, w, h){
     var template = document.querySelector('#temp');
     var windowtemp = template.content.querySelector('.window');
     this.w = windowtemp.cloneNode(true);
-    
+     
     this.content = this.w.querySelector('.content');
     this.statusX = this.w.querySelector('.statusX');
     
@@ -48,6 +48,17 @@ function Window(pic, desk, namn, colorbot, colortop, w, h){
         self.focus();
         console.log('klick på fönstret');
     });
+    
+    // var resize = this.w.querySelector('.resize').querySelector('img');
+    // console.log(resize);
+    // resize.addEventListener('mousedown', function(e){
+    //     console.log('inne i list');
+    //     self.w.style.resize = 'both';
+    // });
+    // resize.addEventListener('mouseup', function(e){
+    //     console.log('inne i list ip');
+    //     self.w.style.resize = '';
+    // });
 }
 
 Window.prototype.close = function(){//plockar bort kopian utav templaten
@@ -58,7 +69,7 @@ Window.prototype.moveWind = function(t, l){
     //sätter top och left på första window
     var top = Window.globalTop + 29;
     var left = Window.globalLeft + 29;
-    console.log('i funk top: '+top+' left: '+left)
+    console.log('top: '+top+' left: '+left)
     
     this.w.style.top = top+'px';
     this.w.style.left = left+'px';
