@@ -10,12 +10,13 @@ function NewRSS(wind){
             
             xhr.onreadystatechange = function(){ //denna kod skall köras när vi får ett svar
                 if(xhr.readyState === 4 && xhr.status === 200){//allt ok
+                wind.statusX.innerHTML = ' ';//tar bort 'laddar..' när allt hämtas
                     //skapa divtaggar och lägg i text och rubik i dem
-                    var quest = JSON.parse(xhr.responseText);
+                    var quest = xhr.responseText;
                     
-                   
+                   wind.content.innerHTML = quest;
                 
-                
+                //timer som laddar om informationen igen
                 }else if(xhr.status === 404){
                         console.log('Hittades ej');
                 }else{
@@ -28,9 +29,10 @@ function NewRSS(wind){
                     console.log(load);
                 }
             
-            
-            xhr.open('GET', "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.svtplay.se/agenda/rss.xml"), true); //asynkromt anrop
+            };
+            xhr.open('GET', "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt"), true); //asynkromt anrop
             
             xhr.send(null);
             
+        
 }

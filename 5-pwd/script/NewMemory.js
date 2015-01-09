@@ -2,57 +2,34 @@
 //skapa nytt memory spel
 function NewMemory(wind){
     console.log('skapar memory');
-    //lägga in i content
-   //gör funktionerna i konstruktor då nås alla variabler som jag skapat här.
    
    var imgRandom = [], times = 0, pic1 = '', pic2='', klickedNode = [], target1='', target2='';
-   var link1 = "", link2= "", score= 0, count= 0, timeout = undefined, picValue= 0, row= 0, col= 0;
+   var link1 = "", link2= "", score= 0, count= 0, picValue= 0;
     
-    window.onload = goMem();
-    function goMem(){
-        console.log('inne i go');
-        var submit = document.createElement('input');//knappen
-        submit.setAttribute('type', 'submit');
-        submit.setAttribute('value', 'Räkna ut');
-        submit.setAttribute('id', 'send');
-        
-        //input rutorna
-        var nr1 = document.createElement('input');
-        nr1.setAttribute('id', 'nr1');
-        nr1.setAttribute('placeholder', 'Minst 2, max 4');
-        nr1.setAttribute('type', 'text');
-        
-        var nr2 = document.createElement('input');
-        nr2.setAttribute('id', 'nr2');
-        nr2.setAttribute('placeholder', 'Minst 2, max 4');
-        nr2.setAttribute('type', 'text');
-        
         //divtaggar i fönstret
+        var wrap= document.createElement('div');
+        wrap.setAttribute('class', 'wrap');
         var cards = document.createElement('div');
+        cards.setAttribute('class', 'cards');
         var points = document.createElement('div');
+        points.setAttribute('class', 'points');
+points.innerHTML = 'Poäng: XX <br> Försök: XX';
         var done = document.createElement('div');
+        done.setAttribute('class', 'done');
+done.innerHTML = '00:00:00 sek';
+        var p = document.createElement('p');
+p.innerHTML = 'Grattis! <br> Du har vunnit, och klarade det på XX försök! <br> Det tog XX lång tid'
         
-        //lägger in divtaggarna i fönstret
-        var memory = document.createElement('div');
-        memory.setAttribute('class', 'memory');
-        var form = document.createElement('form');
-        memory.appendChild(form);
-        form.appendChild(submit);
-        form.appendChild(nr1);
-        form.appendChild(nr2);
+        wind.content.appendChild(cards);
+        wind.content.appendChild(wrap);
+        wrap.appendChild(points);
+        wrap.appendChild(done);
+        wrap.appendChild(p);
         
-        wind.content.appendChild(memory);
-        
-        console.log(submit);
-        submit.addEventListener("click", function(a){
-            a.preventDefault();
-            row = document.querySelector("#nr1").value;
-            col = document.querySelector("#nr2").value;
-            
-            imgRandom.push(RandomGenerator.getPictureArray(row, col));
-            tableCreate(row, col, cards);
-        });
-    }
+        imgRandom.push(RandomGenerator.getPictureArray(4, 4));//skapas random nummer
+        tableCreate(4, 4, cards);//skickar iväf höjd och bredd och skapar tabell
+        // });
+    
     
     function tableCreate(c, r, cards){
         
@@ -80,13 +57,10 @@ function NewMemory(wind){
                 a.addEventListener('click', flip);
             }
             tblBody.appendChild(row);
-            
         }
         tbl.appendChild(tblBody);
         cards.appendChild(tbl);
-        
-       
-       document.querySelector('form').setAttribute('class', 'hidden');
+    
     }
     
     function flip(){
@@ -133,7 +107,7 @@ function NewMemory(wind){
     function timer(){
         if(pic1 != pic2){//om de ej är lika vänd tillbaka dem båda
                 target1.setAttribute('src', 'pics/memory/0.jpg');//bilderna återställs efter en sek
-                target2.setAttribute('src', 'pics//memory0.jpg');
+                target2.setAttribute('src', 'pics/memory/0.jpg');
                 times = 0;
                 link1.addEventListener('click', flip);
                 link2.addEventListener('click', flip);
@@ -153,12 +127,11 @@ function NewMemory(wind){
     }
     
     function write(){
-         console.log('row och col är '+(row*col)+'  score är '+score);
-         var p = go.points.querySelector('p');
-         p.innerHTML = "Antal poäng:<br>"+score;
-         if(score === (row*col)/2){
-             
-             go.done.innerHTML = "Grattis! Du har vunnit, och klarade det på "+(count/2)+" försök!";
+         
+         points.appendChild(p);
+         points.innerHTML = 'Poäng: '+score+'<br> Försök: '+Math.round(count/2);
+         if(score === (4*4)/2){
+             wrap.innerHTML = "Grattis! Du har vunnit, och klarade det på "+(count/2)+" försök! <br> Det tog lång tid";
          }
         
      }

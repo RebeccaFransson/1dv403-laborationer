@@ -1,0 +1,29 @@
+.rssFeed{
+    padding:15px;
+}
+.rss_title{
+    position:relative;
+    bottom:80px;
+    border:1px solid rgba(221, 244, 199, 0.0);
+    border-top: 2px solid black;
+    padding-top:10px;
+    text-align:center;
+    color:#5E6F4E;
+}
+.rssFeed a{
+    background-color:rgba(221, 244, 199, 0.5);
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    display:block;
+    margin:auto;
+    position:relative;
+    bottom:90px;
+    color:#5A8B98;
+    text-align:center;
+}
+.rssFeed p{
+    text-align:center;
+    font-size: 16px;
+    position:relative;
+    bottom:100px;
+}

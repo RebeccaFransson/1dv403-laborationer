@@ -5,7 +5,7 @@ function Window(pic, desk, namn, colorbot, colortop, w, h){
     w = w || "350";
     h = h || "410";
     
-    console.log('w: '+w+' h: '+h)
+    console.log('w: '+w+' h: '+h);
     this.desktop = desk;
     var template = document.querySelector('#temp');//template
     var windowtemp = template.content.querySelector('.window');//window klassen i template
@@ -18,8 +18,8 @@ function Window(pic, desk, namn, colorbot, colortop, w, h){
     this.content.style.width = w+'px';
     this.content.style.height = h+'px';
     
-    //skickar med top och left till funktionen som sätter style
-    this.moveWind(10, 10);
+    //skickar med höjden på fönstret till functionen som kommer flytta fönstrerna
+    this.moveWind(h);
     
     var topPic = document.createElement('img');
     topPic.setAttribute('src', pic);
@@ -48,28 +48,25 @@ function Window(pic, desk, namn, colorbot, colortop, w, h){
         self.focus();
         console.log('klick på fönstret');
     });
-    
-    // var resize = this.w.querySelector('.resize').querySelector('img');
-    // console.log(resize);
-    // resize.addEventListener('mousedown', function(e){
-    //     console.log('inne i list');
-    //     self.w.style.resize = 'both';
-    // });
-    // resize.addEventListener('mouseup', function(e){
-    //     console.log('inne i list ip');
-    //     self.w.style.resize = '';
-    // });
 }
 
 Window.prototype.close = function(){//plockar bort kopian utav templaten
     this.w.parentNode.removeChild(this.w);
 };
 
-Window.prototype.moveWind = function(t, l){
-    //sätter top och left på första window
-    var top = Window.globalTop + 29;
-    var left = Window.globalLeft + 29;
-    console.log('top: '+top+' left: '+left)
+Window.prototype.moveWind = function(h){
+    var top, left;
+    console.log('maxhöjd: '+ this.desktop.clientHeight);
+    //kolla utanför top+höjd större än desktop.content.clientHeight
+    if((top+h)>(this.desktop.clientHeight-this.desktop.meny.clientHeight)){
+        console.log('UTANFÖÖÖÖR');
+    }else{
+    //sätter top och left på nästa nya window
+    top = Window.globalTop + 29;
+    left = Window.globalLeft + 29;
+    console.log('top: '+top+' left: '+left);
+    
+    }
     
     this.w.style.top = top+'px';
     this.w.style.left = left+'px';

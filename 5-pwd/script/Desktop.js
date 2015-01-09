@@ -6,7 +6,7 @@ function Desktop(){
    
 };
 //lägger till ikoner t programmen
-Desktop.prototype.addApp = function(pic, app, namn, colorbot, colortop){//lägga till img, onklick på a. skickar till det js som skall skapa(tex newPhoto)
+Desktop.prototype.addApp = function(pic, app, namn, colorbot, colortop, w, h){//lägga till img, onklick på a. skickar till det js som skall skapa(tex newPhoto)
     
     //skapar bilder och lägger till attribut till menyn + tooltip
     var img = document.createElement('img');
@@ -17,15 +17,16 @@ Desktop.prototype.addApp = function(pic, app, namn, colorbot, colortop){//lägga
     a.setAttribute('href', '#');
     a.setAttribute('class', 'tooltip');
     a.setAttribute('title', namn);
-    document.querySelector('#meny').appendChild(a);
+    this.meny = document.querySelector('#meny')
+    this.meny.appendChild(a);
     a.appendChild(img);
     
     var self = this;//spara gamla this som är knappen
     
     //skapar fönster med appen man klickat på
     a.onclick = function(){
-        var wind = new Window(pic, self, namn, colorbot, colortop);
-        var photo = new app(wind);
+        var wind = new Window(pic, self, namn, colorbot, colortop, w, h);//fönstret
+        var photo = new app(wind);//appen
         
     };
 };
