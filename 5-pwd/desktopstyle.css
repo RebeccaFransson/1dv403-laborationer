@@ -1,7 +1,17 @@
-body{
+body, html{
     background-image: url('pics/BG2.jpg');
     background-size:cover;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
+#content{
+    height: 100%;
+    width: 100%;
+}
+
 #meny{
     width:100%;
     height:50px;

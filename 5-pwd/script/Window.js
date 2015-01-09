@@ -19,7 +19,7 @@ function Window(pic, desk, namn, colorbot, colortop, w, h){
     this.content.style.height = h+'px';
     
     //skickar med höjden på fönstret till functionen som kommer flytta fönstrerna
-    this.moveWind(h);
+    this.moveWind(h, this.desktop);
     
     var topPic = document.createElement('img');
     topPic.setAttribute('src', pic);
@@ -54,26 +54,28 @@ Window.prototype.close = function(){//plockar bort kopian utav templaten
     this.w.parentNode.removeChild(this.w);
 };
 
-Window.prototype.moveWind = function(h){
-    var top, left;
-    console.log('maxhöjd: '+ this.desktop.clientHeight);
-    //kolla utanför top+höjd större än desktop.content.clientHeight
-    if((top+h)>(this.desktop.clientHeight-this.desktop.meny.clientHeight)){
-        console.log('UTANFÖÖÖÖR');
-    }else{
+Window.prototype.moveWind = function(h, desk){
     //sätter top och left på nästa nya window
-    top = Window.globalTop + 29;
-    left = Window.globalLeft + 29;
-    console.log('top: '+top+' left: '+left);
+    var top = Window.globalTop + 29;
+    var left = Window.globalLeft + 29;
     
+    console.log('maxhöjd: '+ parseInt(top+h)+'top '+top+' h: '+h)
+    //kolla utanför top+höjd större än desktop.content.clientHeight
+    if((top+h)>(this.desktop.content.clientHeight-this.desktop.meny.clientHeight)){
+        //utanför sätt globalTop som 0
+        Window.globalTop = 0;
+        console.log('utanfööör')
+    }else{
+    console.log('top: '+top+' left: '+left);
+    Window.globalTop = top;
+    Window.globalLeft = left;
     }
     
     this.w.style.top = top+'px';
     this.w.style.left = left+'px';
     
     //sätter globala variablem som top och left
-    Window.globalTop = top;
-    Window.globalLeft = left;
+    
 };
 
 // global variabel med top och left
