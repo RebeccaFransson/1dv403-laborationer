@@ -1,15 +1,16 @@
 "use strict";
 //skapa nytt memory spel
-function NewMemory(){
+function NewMemory(wind){
     console.log('skapar memory');
-    
+    //lägga in i content
    //gör funktionerna i konstruktor då nås alla variabler som jag skapat här.
    
    var imgRandom = [], times = 0, pic1 = '', pic2='', klickedNode = [], target1='', target2='';
    var link1 = "", link2= "", score= 0, count= 0, timeout = undefined, picValue= 0, row= 0, col= 0;
     
-    function go(){
-        console.log('inne i go')
+    window.onload = goMem();
+    function goMem(){
+        console.log('inne i go');
         var submit = document.createElement('input');//knappen
         submit.setAttribute('type', 'submit');
         submit.setAttribute('value', 'Räkna ut');
@@ -31,6 +32,17 @@ function NewMemory(){
         var points = document.createElement('div');
         var done = document.createElement('div');
         
+        //lägger in divtaggarna i fönstret
+        var memory = document.createElement('div');
+        memory.setAttribute('class', 'memory');
+        var form = document.createElement('form');
+        memory.appendChild(form);
+        form.appendChild(submit);
+        form.appendChild(nr1);
+        form.appendChild(nr2);
+        
+        wind.content.appendChild(memory);
+        
         console.log(submit);
         submit.addEventListener("click", function(a){
             a.preventDefault();
@@ -38,11 +50,11 @@ function NewMemory(){
             col = document.querySelector("#nr2").value;
             
             imgRandom.push(RandomGenerator.getPictureArray(row, col));
-            tableCreate(row, col);
+            tableCreate(row, col, cards);
         });
     }
     
-    function tableCreate(c, r){
+    function tableCreate(c, r, cards){
         
         var tbl     = document.createElement('table');
         var tblBody = document.createElement('tbody');
@@ -56,7 +68,7 @@ function NewMemory(){
                 var img = document.createElement('img');
                 var count = ((j * r) + i);
                 
-                img.setAttribute('src', 'pics/0.jpg');
+                img.setAttribute('src', 'pics/memory/0.jpg');
                 img.setAttribute('a', ''+imgRandom[0][count]+'');
                 a.setAttribute('href', '#');
                 a.setAttribute('a', ''+imgRandom[0][count]+'');
@@ -71,7 +83,7 @@ function NewMemory(){
             
         }
         tbl.appendChild(tblBody);
-        go.cards.appendChild(tbl);
+        cards.appendChild(tbl);
         
        
        document.querySelector('form').setAttribute('class', 'hidden');
@@ -83,7 +95,7 @@ function NewMemory(){
         klickedNode.push(link.getAttribute('a')); // sparar bilden vi klickade på
         var alink = this.firstChild; //bilden
         picValue = link.getAttribute('a');//variabel som håller koll på bildens värde
-        var src = "pics/"+picValue+".jpg";
+        var src = "pics/memory/"+picValue+".jpg";
         
         if(times < 2){//om vi öppnat mindre än två brickor
         count++;
@@ -120,8 +132,8 @@ function NewMemory(){
     
     function timer(){
         if(pic1 != pic2){//om de ej är lika vänd tillbaka dem båda
-                target1.setAttribute('src', 'pics/0.jpg');//bilderna återställs efter en sek
-                target2.setAttribute('src', 'pics/0.jpg');
+                target1.setAttribute('src', 'pics/memory/0.jpg');//bilderna återställs efter en sek
+                target2.setAttribute('src', 'pics//memory0.jpg');
                 times = 0;
                 link1.addEventListener('click', flip);
                 link2.addEventListener('click', flip);
@@ -131,8 +143,8 @@ function NewMemory(){
             setTimeout(1000);
             times = 0;
         }else{
-            target1.setAttribute('src', 'pics/0.jpg');//bilderna återställs efter en sek
-            target2.setAttribute('src', 'pics/0.jpg');
+            target1.setAttribute('src', 'pics/memory/0.jpg');//bilderna återställs efter en sek
+            target2.setAttribute('src', 'pics/memory/0.jpg');
             times = 0;
             target1.addEventListener('click', flip);
             target2.addEventListener('click', flip);

@@ -7,9 +7,9 @@ function Window(pic, desk, namn, colorbot, colortop, w, h){
     
     console.log('w: '+w+' h: '+h)
     this.desktop = desk;
-    var template = document.querySelector('#temp');
-    var windowtemp = template.content.querySelector('.window');
-    this.w = windowtemp.cloneNode(true);
+    var template = document.querySelector('#temp');//template
+    var windowtemp = template.content.querySelector('.window');//window klassen i template
+    this.w = windowtemp.cloneNode(true);//Kopierar min window-klass från templaten
      
     this.content = this.w.querySelector('.content');
     this.statusX = this.w.querySelector('.statusX');
