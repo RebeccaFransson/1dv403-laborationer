@@ -1,10 +1,10 @@
 "use strict";
 //skapa nytt memory spel
-function NewMemory(wind){
+RF222CZ.NewMemory = function(wind){
     console.log('skapar memory');
    
    var imgRandom = [], times = 0, pic1 = '', pic2='', klickedNode = [], target1='', target2='';
-   var link1 = "", link2= "", score= 0, count= 0, picValue= 0, sek = 0, min = 0;
+   var link1 = "", link2= "", score= 0, count= 0, picValue= 0;
     
     
         //divtaggar i fönstret
@@ -14,7 +14,7 @@ function NewMemory(wind){
         cards.setAttribute('class', 'cards');
         var points = document.createElement('div');
         points.setAttribute('class', 'points');
-points.innerHTML = 'Poäng: XX <br> Försök: XX';
+        points.innerHTML = 'Poäng:  <br><br> Försök: ';
         var done = document.createElement('div');
         done.setAttribute('class', 'done');
         var p = document.createElement('p');
@@ -22,9 +22,8 @@ points.innerHTML = 'Poäng: XX <br> Försök: XX';
         var tbl     = document.createElement('table');
         var tblBody = document.createElement('tbody');
 
-
-        wind.content.appendChild(cards);
         wind.content.appendChild(wrap);
+        wrap.appendChild(cards);
         wrap.appendChild(points);
         wrap.appendChild(done);
         wrap.appendChild(p);
@@ -136,15 +135,28 @@ points.innerHTML = 'Poäng: XX <br> Försök: XX';
     function write(){
          
          points.appendChild(p);
-         points.innerHTML = 'Poäng: '+score+'<br> Försök: '+Math.round(count/2);
-         done.innerHTML = min+' min'+sek+' sek';
+         points.innerHTML = 'Poäng: '+score+'<br><br> Försök: '+Math.round(count/2);
          if(score === (4*4)/2){
-             tbl.innerHTML = '';
-             done.innerHTML = "<h2>Grattis!</h2> Du har vunnit, <br>och klarade det på "+(count/2)+" försök!";
+            points.innerHTML = '';
+            tbl.innerHTML = '';
+            done.innerHTML = "<h2>Grattis!</h2> Du har vunnit, <br>och klarade det på <br><u>"+(count/2)+" försök!</u><br>";
+            
+            //hann inte göra klart en om-starts-knapp
+            // var again = document.createElement('input');
+            // done.appendChild(again);
+            // again.setAttribute('type', 'submit');
+            // again.setAttribute('value', 'Spela igen');
+            
+            // again.addEventListener('click', function(){
+            //     done.innerHTML = '';
+                
+            //     score = 0;
+            //     times = 0;
+            //     count = 0;
+            //     tableCreate(); 
+            // });
          }
-         points.innerHTML = '';
-         tbl.innerHTML = '';
-                     done.innerHTML = "<h2>Grattis!</h2> Du har vunnit, <br>och klarade det på "+(count/2)+" försök!";
-
+         
+         
      }
 }

@@ -59,3 +59,7 @@ body, html{
     font-size:1.6em;
     padding-right:10px;
 }
+/*Så att det fungerar i IE*/
+#hidden{
+    display: none;
+}

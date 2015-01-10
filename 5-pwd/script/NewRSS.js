@@ -2,14 +2,13 @@
 
 //Följande kod ger adressen för att hämta RSS-feeden från svt: 
 //"http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.svtplay.se/agenda/rss.xml")
-
-function NewRSS(wind){
+RF222CZ.NewRSS = function(wind){
     console.log('skapar RSS-läsare');
     
-    NewRSS.prototype.run(wind);
-    setInterval(function(){ NewRSS.prototype.run(wind); }, 60000);
+    RF222CZ.NewRSS.prototype.run(wind);
+    setInterval(function(){ RF222CZ.NewRSS.prototype.run(wind); }, 60000);
 }
-NewRSS.prototype.run = function(wind){
+RF222CZ.NewRSS.prototype.run = function(wind){
     
         var xhr = new XMLHttpRequest();
             

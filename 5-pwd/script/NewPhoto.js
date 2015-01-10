@@ -1,6 +1,6 @@
 "use strict";
 //skapa nytt galleri
-function NewPhoto(wind){
+RF222CZ.NewPhoto = function(wind){
     
     var xhr = new XMLHttpRequest();
     
@@ -54,7 +54,7 @@ function NewPhoto(wind){
                     wind.content.addEventListener('click', function(e){
                            var klickedNode = e.target;
                            if(klickedNode.getAttribute('src') != null){
-                               wind.focus();
+                               
                                var picBig = document.createElement('img');
                                 picBig.setAttribute('src', klickedNode.data.URL);
                                 picBig.setAttribute('width', klickedNode.data.width);

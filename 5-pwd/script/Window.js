@@ -1,6 +1,6 @@
 "use strict";
 
-function Window(pic, desk, namn, colorbot, colortop, w, h, scroll){
+RF222CZ.Window = function(pic, desk, namn, colorbot, colortop, w, h, scroll){
     
     //default storlek 
     w = w || "350";
@@ -10,8 +10,19 @@ function Window(pic, desk, namn, colorbot, colortop, w, h, scroll){
     console.log('w: '+w+' h: '+h);
     this.desktop = desk;
     var template = document.querySelector('#temp');//template
-    var windowtemp = template.content.querySelector('.window');//window klassen i template
-    this.w = windowtemp.cloneNode(true);//Kopierar min window-klass från templaten
+    //var windowtemp = template.content.querySelector('.window');//window klassen i template
+    
+    
+    var windowTemplate;
+    var tmp = document.documentMode;
+    if(tmp){
+         windowTemplate = template.querySelector(".window");
+    }else{
+         windowTemplate = template.content.querySelector(".window");
+    }
+    
+    this.w = windowTemplate.cloneNode(true);//Kopierar min window-klass från templaten
+    
      
     this.content = this.w.querySelector('.content');
     this.statusX = this.w.querySelector('.statusX');
@@ -25,6 +36,8 @@ function Window(pic, desk, namn, colorbot, colortop, w, h, scroll){
     
     //skickar med höjden på fönstret till functionen som kommer flytta fönstrerna
     this.moveWind(h, w, this.desktop);
+    
+    
     
     var topPic = document.createElement('img');
     topPic.setAttribute('src', pic);
@@ -56,11 +69,11 @@ function Window(pic, desk, namn, colorbot, colortop, w, h, scroll){
     
 }
 
-Window.prototype.close = function(){//plockar bort kopian utav templaten
+RF222CZ.Window.prototype.close = function(){//plockar bort kopian utav templaten
     this.w.parentNode.removeChild(this.w);
 };
 
-Window.prototype.moveWind = function(h, w, desk){
+RF222CZ.Window.prototype.moveWind = function(h, w, desk){
     
     //sätter globala variablem som top och left
     var top = Window.globalTop + 29;
@@ -94,11 +107,12 @@ Window.globalTop = 0;
 Window.globalLeft = 0;
 Window.globalIndex = 0;
 
-Window.prototype.focus = function(){
+RF222CZ.Window.prototype.focus = function(){
     //on klick på hela fönstret z-index = 99
     var indexCount = 1 + Window.globalIndex;
     this.w.style.zIndex = indexCount;
     
     Window.globalIndex = indexCount;
 };
+
 //http://tech.pro/tutorial/650/javascript-draggable-elements   DRAGEBLE ELEMENTS
