@@ -19,7 +19,7 @@ function Window(pic, desk, namn, colorbot, colortop, w, h){
     this.content.style.height = h+'px';
     
     //skickar med höjden på fönstret till functionen som kommer flytta fönstrerna
-    this.moveWind(h, this.desktop);
+    this.moveWind(h, w, this.desktop);
     
     var topPic = document.createElement('img');
     topPic.setAttribute('src', pic);
@@ -54,28 +54,33 @@ Window.prototype.close = function(){//plockar bort kopian utav templaten
     this.w.parentNode.removeChild(this.w);
 };
 
-Window.prototype.moveWind = function(h, desk){
-    //sätter top och left på nästa nya window
+Window.prototype.moveWind = function(h, w, desk){
+    
+    //sätter globala variablem som top och left
     var top = Window.globalTop + 29;
     var left = Window.globalLeft + 29;
     
-    console.log('maxhöjd: '+ parseInt(top+h)+'top '+top+' h: '+h)
-    //kolla utanför top+höjd större än desktop.content.clientHeight
-    if((top+h)>(this.desktop.content.clientHeight-this.desktop.meny.clientHeight)){
-        //utanför sätt globalTop som 0
-        Window.globalTop = 0;
-        console.log('utanfööör')
-    }else{
-    console.log('top: '+top+' left: '+left);
-    Window.globalTop = top;
-    Window.globalLeft = left;
-    }
-    
+    console.log((parseInt(top)+parseInt(h))+' får ej vara större än '+(this.desktop.content.clientHeight-this.desktop.meny.clientHeight))
+   
+   //sätter top och left på nästa nya window
     this.w.style.top = top+'px';
     this.w.style.left = left+'px';
-    
-    //sätter globala variablem som top och left
-    
+   
+   //kolla utanför top+höjd större än desktop.content.clientHeight
+    if((parseInt(top)+parseInt(h))>(this.desktop.content.clientHeight-(this.desktop.meny.clientHeight*2.5))){
+        //utanför nedåt sätt globalTop som 0
+        Window.globalTop = 0;
+    }else{
+        Window.globalTop = top;
+        Window.globalLeft = left;
+        if((parseInt(left)+parseInt(w))>(this.desktop.content.clientWidth)){
+            //utanför år höger sätt globalleft som 0
+            Window.globalLeft = 0;
+        }else{
+            Window.globalTop = top;
+            Window.globalLeft = left;
+        }
+    }
 };
 
 // global variabel med top och left
