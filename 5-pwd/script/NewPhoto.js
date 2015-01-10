@@ -46,24 +46,22 @@ function NewPhoto(wind){
                         var picBoxHeight = Math.max.apply(Math, arrayHeight)+'px';
                         picBox.style.width = picBoxWidth;
                         picBox.style.height = picBoxHeight;
-                        //picBox.setAttribute('width', picBoxWidth);
-                        //picBox.setAttribute('height', picBoxHeight);
                          
                         pic.data = array[i]; //sparar arrayn så att jag kan få ut värdena för den stora bilden sen
                     }
-                    
+                    //console.log('zindex: '+wind.clientHeight);
                     //nytt fönster för stora bilder 
                     wind.content.addEventListener('click', function(e){
                            var klickedNode = e.target;
                            if(klickedNode.getAttribute('src') != null){
-                               //wind.content.style.height = '';
-                               var picwin = new Window('pics/bigger.png' ,wind.desktop, 'Förstorngsglas', '#858585', '#5f5f5f', klickedNode.data.width, klickedNode.data.height);//skapa nytt fönster med bilden Skapar fönstret på=(wind.desktop = skrivbordet)
-                               
+                               wind.focus();
                                var picBig = document.createElement('img');
                                 picBig.setAttribute('src', klickedNode.data.URL);
                                 picBig.setAttribute('width', klickedNode.data.width);
                                 picBig.setAttribute('height', klickedNode.data.height);
                                 
+                            
+                            var picwin = new Window('pics/bigger.png', wind.desktop, 'Förstorngsglas', '#858585', '#5f5f5f', klickedNode.data.width, klickedNode.data.height, 'hidden');//skapa nytt fönster med bilden Skapar fönstret på=(wind.desktop = skrivbordet)
                             picwin.content.appendChild(picBig);
                            }
                     });

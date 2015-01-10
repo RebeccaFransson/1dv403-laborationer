@@ -7,7 +7,8 @@
     resize:both;
 }
 .topbar{
-    font-family: 'Merriweather', serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold; 
     font-size:20px;
     padding: 2px 0 2px 0;
     padding-left:4px;
@@ -23,25 +24,26 @@
     padding-right:3px;
 }
 .statusX{
-    position:relative;
     width:100%;
     min-height:20px;
     box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.5);
     text-align:left;
-    color:white;
+    color:#818181;
 }
-
 .close{
     position:relative;
     top:3px;
+    right:3px;
     font-size:30px;
     height:20px;
+    width:20px;
     float:right;
+    background-image: url('pics/close.png');
 }
-.close img:hover{
-    background-image: url('pics/closeH.png');
-    background-repeat:none;
-    -webkit-filter: grayscale(100%);
+.close:hover{
+    background: url('pics/closeH.png');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
 }
 
 .content{

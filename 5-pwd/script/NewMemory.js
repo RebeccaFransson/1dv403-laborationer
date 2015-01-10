@@ -4,7 +4,8 @@ function NewMemory(wind){
     console.log('skapar memory');
    
    var imgRandom = [], times = 0, pic1 = '', pic2='', klickedNode = [], target1='', target2='';
-   var link1 = "", link2= "", score= 0, count= 0, picValue= 0;
+   var link1 = "", link2= "", score= 0, count= 0, picValue= 0, sek = 0, min = 0;
+    
     
         //divtaggar i fönstret
         var wrap= document.createElement('div');
@@ -16,10 +17,12 @@ function NewMemory(wind){
 points.innerHTML = 'Poäng: XX <br> Försök: XX';
         var done = document.createElement('div');
         done.setAttribute('class', 'done');
-done.innerHTML = '00:00:00 sek';
         var p = document.createElement('p');
-p.innerHTML = 'Grattis! <br> Du har vunnit, och klarade det på XX försök! <br> Det tog XX lång tid'
         
+        var tbl     = document.createElement('table');
+        var tblBody = document.createElement('tbody');
+
+
         wind.content.appendChild(cards);
         wind.content.appendChild(wrap);
         wrap.appendChild(points);
@@ -33,9 +36,7 @@ p.innerHTML = 'Grattis! <br> Du har vunnit, och klarade det på XX försök! <br
     
     function tableCreate(c, r, cards){
         
-        var tbl     = document.createElement('table');
-        var tblBody = document.createElement('tbody');
-
+        
         for (var j = 0; j < c; j++) {
             var row = document.createElement('tr');
             
@@ -52,7 +53,7 @@ p.innerHTML = 'Grattis! <br> Du har vunnit, och klarade det på XX försök! <br
 
                 cell.appendChild(a);
                 a.appendChild(img);
-                row.appendChild(cell)
+                row.appendChild(cell);
                 
                 a.addEventListener('click', flip);
             }
@@ -63,6 +64,7 @@ p.innerHTML = 'Grattis! <br> Du har vunnit, och klarade det på XX försök! <br
     
     }
     
+    
     function flip(){
         
         var link = this;
@@ -71,8 +73,13 @@ p.innerHTML = 'Grattis! <br> Du har vunnit, och klarade det på XX försök! <br
         picValue = link.getAttribute('a');//variabel som håller koll på bildens värde
         var src = "pics/memory/"+picValue+".jpg";
         
+        
         if(times < 2){//om vi öppnat mindre än två brickor
         count++;
+        
+        //timer
+        
+        
         
             if(times < 1){ //om vi bara öppnat en bricka
                 times++;
@@ -130,9 +137,14 @@ p.innerHTML = 'Grattis! <br> Du har vunnit, och klarade det på XX försök! <br
          
          points.appendChild(p);
          points.innerHTML = 'Poäng: '+score+'<br> Försök: '+Math.round(count/2);
+         done.innerHTML = min+' min'+sek+' sek';
          if(score === (4*4)/2){
-             wrap.innerHTML = "Grattis! Du har vunnit, och klarade det på "+(count/2)+" försök! <br> Det tog lång tid";
+             tbl.innerHTML = '';
+             done.innerHTML = "<h2>Grattis!</h2> Du har vunnit, <br>och klarade det på "+(count/2)+" försök!";
          }
-        
+         points.innerHTML = '';
+         tbl.innerHTML = '';
+                     done.innerHTML = "<h2>Grattis!</h2> Du har vunnit, <br>och klarade det på "+(count/2)+" försök!";
+
      }
 }

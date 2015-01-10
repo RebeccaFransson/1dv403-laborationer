@@ -1,9 +1,11 @@
 "use strict";
 
-function Window(pic, desk, namn, colorbot, colortop, w, h){
+function Window(pic, desk, namn, colorbot, colortop, w, h, scroll){
+    
     //default storlek 
     w = w || "350";
     h = h || "410";
+    //number = number || 1;
     
     console.log('w: '+w+' h: '+h);
     this.desktop = desk;
@@ -18,6 +20,9 @@ function Window(pic, desk, namn, colorbot, colortop, w, h){
     this.content.style.width = w+'px';
     this.content.style.height = h+'px';
     
+    //tvungen att lägga till en scroll för bilderna i förtoringsglaset.
+    this.content.style.overflow = scroll;
+    
     //skickar med höjden på fönstret till functionen som kommer flytta fönstrerna
     this.moveWind(h, w, this.desktop);
     
@@ -28,12 +33,13 @@ function Window(pic, desk, namn, colorbot, colortop, w, h){
     var topbar = this.w.querySelector('.topbar');
     topbar.appendChild(topPic);
     
+    //namn, färg
     topbar.innerHTML += namn;
     topbar.setAttribute('style', 'background-color:'+colortop);//sätt färg på  topbar
     this.w.querySelector('.statusX').setAttribute('style', 'background-color:'+colorbot);
+    
+    //lägger till fösntret på skrivbordet
     desk.content.appendChild(this.w);
-    
-    
     
     var self = this;//gör om this så vi kan använda detta this i functionen under(utan att det ska bli this i den funktionen)
     //stänger fönstret
@@ -41,13 +47,13 @@ function Window(pic, desk, namn, colorbot, colortop, w, h){
     close.onclick = function(){
         self.close();
     };
-    
     this.focus();
     //on klick på hela fönstret z-index = 99
-    this.w.addEventListener('click', function(e){
+    this.w.addEventListener('mousedown', function(e){
         self.focus();
         console.log('klick på fönstret');
     });
+    
 }
 
 Window.prototype.close = function(){//plockar bort kopian utav templaten

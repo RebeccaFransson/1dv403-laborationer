@@ -3,6 +3,7 @@
     width:80px;
     height:80px;
     margin:auto;
+    float:right;
 }
 table, th, td{
     border: 2px solid white;
@@ -23,13 +24,12 @@ table{
     height:120px;
     font-size:1em;
     text-align:center;
-    background-color:pink;
 }
 .points{
     float:left;
     margin:2px;
     width: 170px;
-    background-color:#d1cbab;
+    background-color:#E8E4CF;
     -moz-border-radius: 5px;
     border-radius: 5px;
     
@@ -41,15 +41,15 @@ table{
     float:left;
     position:relative;
     bottom:10px;
-    font-family: ;
+    font-family: 'Roboto', sans-serif;
 }
 .done{
     float:left;
-    margin:2px;
-    width: 170px;
-    height:40px;
-    background-color:#d1cbab;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    margin:auto;
+    width: 100%;
     text-align: center;
+}
+.done h2{
+    font-size:3em;
+    color:blue;
 }

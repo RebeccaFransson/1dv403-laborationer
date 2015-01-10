@@ -6,11 +6,21 @@
 function NewRSS(wind){
     console.log('skapar RSS-läsare');
     
-    var xhr = new XMLHttpRequest();
+    NewRSS.prototype.run(wind);
+    setInterval(function(){ NewRSS.prototype.run(wind); }, 60000);
+}
+NewRSS.prototype.run = function(wind){
+    
+        var xhr = new XMLHttpRequest();
             
             xhr.onreadystatechange = function(){ //denna kod skall köras när vi får ett svar
                 if(xhr.readyState === 4 && xhr.status === 200){//allt ok
-                wind.statusX.innerHTML = ' ';//tar bort 'laddar..' när allt hämtas
+                
+                var done = new Date()
+                var h=done.getHours();
+                var m=done.getMinutes();
+                
+                wind.statusX.innerHTML = 'Senast uppdaterad kl '+h+':'+m;//tar bort 'laddar..' när allt hämtas
                     //skapa divtaggar och lägg i text och rubik i dem
                     var quest = xhr.responseText;
                     
@@ -33,6 +43,4 @@ function NewRSS(wind){
             xhr.open('GET', "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt"), true); //asynkromt anrop
             
             xhr.send(null);
-            
-        
-}
+};
