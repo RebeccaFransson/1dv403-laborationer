@@ -40,6 +40,7 @@ RF222CZ.Window = function(pic, desk, namn, colorbot, colortop, w, h, scroll){
     
     
     var topPic = document.createElement('img');
+    topPic.setAttribute('class', 'app');
     topPic.setAttribute('src', pic);
     topPic.setAttribute('width', '25px');
     topPic.setAttribute('height', '25px');
@@ -75,44 +76,46 @@ RF222CZ.Window.prototype.close = function(){//plockar bort kopian utav templaten
 
 RF222CZ.Window.prototype.moveWind = function(h, w, desk){
     
-    //sätter globala variablem som top och left
-    var top = Window.globalTop + 29;
-    var left = Window.globalLeft + 29;
+    //sätter globala variablem som top och left FÖRSTA FÖNSTRET
+    var top = RF222CZ.Window.globalTop + 10;
+    var left = RF222CZ.Window.globalLeft + 10;
     
-    console.log((parseInt(top)+parseInt(h))+' får ej vara större än '+(this.desktop.content.clientHeight-this.desktop.meny.clientHeight))
-   
    //sätter top och left på nästa nya window
     this.w.style.top = top+'px';
     this.w.style.left = left+'px';
    
+   //resten av fönsterna
+    top = RF222CZ.Window.globalTop + 35;
+    left = RF222CZ.Window.globalLeft + 35;
+    
    //kolla utanför top+höjd större än desktop.content.clientHeight
-    if((parseInt(top)+parseInt(h))>(this.desktop.content.clientHeight-(this.desktop.meny.clientHeight*2.5))){
+    if((parseInt(top)+parseInt(h))>(this.desktop.content.clientHeight-(this.desktop.meny.clientHeight*2.2))){
         //utanför nedåt sätt globalTop som 0
-        Window.globalTop = 0;
+        RF222CZ.Window.globalTop = 0;
     }else{
-        Window.globalTop = top;
-        Window.globalLeft = left;
+        RF222CZ.Window.globalTop = top;
+        RF222CZ.Window.globalLeft = left;
         if((parseInt(left)+parseInt(w))>(this.desktop.content.clientWidth)){
             //utanför år höger sätt globalleft som 0
-            Window.globalLeft = 0;
+            RF222CZ.Window.globalLeft = 0;
         }else{
-            Window.globalTop = top;
-            Window.globalLeft = left;
+            RF222CZ.Window.globalTop = top;
+            RF222CZ.Window.globalLeft = left;
         }
     }
 };
 
 // global variabel med top och left
-Window.globalTop = 0;
-Window.globalLeft = 0;
-Window.globalIndex = 0;
+RF222CZ.Window.globalTop = 0;
+RF222CZ.Window.globalLeft = 0;
+RF222CZ.Window.globalIndex = 0;
 
 RF222CZ.Window.prototype.focus = function(){
     //on klick på hela fönstret z-index = 99
-    var indexCount = 1 + Window.globalIndex;
+    var indexCount = 1 + RF222CZ.Window.globalIndex;
     this.w.style.zIndex = indexCount;
     
-    Window.globalIndex = indexCount;
+    RF222CZ.Window.globalIndex = indexCount;
 };
 
 //http://tech.pro/tutorial/650/javascript-draggable-elements   DRAGEBLE ELEMENTS

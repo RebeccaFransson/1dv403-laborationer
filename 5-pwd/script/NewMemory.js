@@ -8,13 +8,14 @@ RF222CZ.NewMemory = function(wind){
     
     
         //divtaggar i fönstret
+        wind.content.style.backgroundColor = '#EF6293';
         var wrap= document.createElement('div');
         wrap.setAttribute('class', 'wrap');
         var cards = document.createElement('div');
         cards.setAttribute('class', 'cards');
         var points = document.createElement('div');
         points.setAttribute('class', 'points');
-        points.innerHTML = 'Poäng:  <br><br> Försök: ';
+        points.innerHTML = 'Poäng:  <br> Försök: ';
         var done = document.createElement('div');
         done.setAttribute('class', 'done');
         var p = document.createElement('p');
@@ -135,7 +136,7 @@ RF222CZ.NewMemory = function(wind){
     function write(){
          
          points.appendChild(p);
-         points.innerHTML = 'Poäng: '+score+'<br><br> Försök: '+Math.round(count/2);
+         points.innerHTML = 'Poäng: '+score+'<br> Försök: '+Math.round(count/2);
          if(score === (4*4)/2){
             points.innerHTML = '';
             tbl.innerHTML = '';

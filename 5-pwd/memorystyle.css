@@ -7,7 +7,7 @@
 }
 table, th, td{
     border: 2px solid white;
-    background-color:#d1cbab;
+    background-color:#EF6293;
 }
 td{
     padding:0;
@@ -24,24 +24,11 @@ table{
     text-align:center;
 }
 .points{
-    padding:10px;
-    position:relative;
-    top:5px;
-    margin:auto;
-    width: 30%;
-    background-color:#E8E4CF;
-    -moz-border-radius: 70px;
-    border-radius: 70px;
-    
-    text-align: center;
-    
-    
+    color:rgba(0, 0, 0, 0.6);
+    font-weight:bold;
+    background-color:#EF6293;
 }
-.points p{
-    position:relative;
-    top:50px;
-    font-family: 'Roboto', sans-serif;
-}
+
 .done{
     float:left;
     margin:auto;

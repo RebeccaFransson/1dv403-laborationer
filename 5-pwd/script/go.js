@@ -9,9 +9,9 @@ RF222CZ.run = function(){
    
    desk.startTime();
    
-   desk.addApp('pics/photo.png', RF222CZ.NewPhoto, 'Bilder', '#E8C07B','#e0ab50'); // skickar med bildsökväg och appen, namn och färger
-   desk.addApp('pics/game.png', RF222CZ.NewMemory, 'Memory', '#d7807d','#CB5A56', 350, 447); // skickar med bildsökväg och appen
-   desk.addApp('pics/rss.png', RF222CZ.NewRSS, 'RSS-flöde', '#C7E4AB','#8B9F77', 460); // skickar med bildsökväg och appen
+   desk.addApp('pics/photo.png', RF222CZ.NewPhoto, 'Bilder', '#FA9D55','#F06A47'); // skickar med bildsökväg och appen, namn och färger
+   desk.addApp('pics/game.png', RF222CZ.NewMemory, 'Memory', '#EF6293','#E9407B', 350, 412); // skickar med bildsökväg och appen
+   desk.addApp('pics/rss.png', RF222CZ.NewRSS, 'RSS-flöde', '#0092B3','#2864AD', 460); // skickar med bildsökväg och appen
 
 };
 window.onload = RF222CZ.run;

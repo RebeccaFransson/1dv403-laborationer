@@ -1,5 +1,6 @@
 .rssFeed{
     padding:15px;
+    font-family: 'Lusitana', serif;
 }
 .rss_title{
     position:relative;
@@ -8,10 +9,10 @@
     border-top: 2px solid black;
     padding-top:10px;
     text-align:center;
-    color:#5E6F4E;
+    color:#1E4F8B;
 }
 .rssFeed a{
-    background-color:rgba(221, 244, 199, 0.5);
+    background-color:rgba(0, 146, 179, 0.09);
     -moz-border-radius: 3px;
     border-radius: 3px;
     display:block;
@@ -19,10 +20,10 @@
     position:relative;
     bottom:90px;
     color:#5A8B98;
-    text-align:center;
 }
 .rssFeed p{
-    text-align:center;
+    font-family: 'Roboto', sans-serif; 
+    color:rgba(0, 0, 0, 0.7);
     font-size: 16px;
     position:relative;
     bottom:100px;
