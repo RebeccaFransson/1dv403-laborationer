@@ -28,3 +28,6 @@
     position:relative;
     bottom:100px;
 }
+.rssFeed img{
+    width:100%;
+}

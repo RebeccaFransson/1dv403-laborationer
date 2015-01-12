@@ -61,7 +61,7 @@ RF222CZ.NewPhoto = function(wind){
                                 picBig.setAttribute('height', klickedNode.data.height);
                                 
                             
-                            var picwin = new Window('pics/bigger.png', wind.desktop, 'Förstorngsglas', '#858585', '#5f5f5f', klickedNode.data.width, klickedNode.data.height, 'hidden');//skapa nytt fönster med bilden Skapar fönstret på=(wind.desktop = skrivbordet)
+                            var picwin = new RF222CZ.Window('pics/bigger.png', wind.desktop, 'Förstorngsglas', '#858585', '#5f5f5f', klickedNode.data.width, klickedNode.data.height, 'hidden');//skapa nytt fönster med bilden Skapar fönstret på=(wind.desktop = skrivbordet)
                             picwin.content.appendChild(picBig);
                            }
                     });
@@ -74,7 +74,6 @@ RF222CZ.NewPhoto = function(wind){
                              document.querySelector('body').style.backgroundImage = 'url('+klickedNodeRight.data.URL+')';
                              document.querySelector('body').style.backgroundSize = 'auto';
                          }
-                        console.log('högerklick');
                     });
                 
                 }else if(xhr.status === 404){
@@ -86,14 +85,10 @@ RF222CZ.NewPhoto = function(wind){
                     load.setAttribute('width', '20px');
                     load.setAttribute('height', '20px');
                     wind.statusX.appendChild(load);
-                    console.log(load);
                 }
             };
             
             xhr.open('GET', 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/', true); //asynkromt anrop
             
             xhr.send(null);
-            
-            
-    console.log('skapar nytt galleri');
-}
+};

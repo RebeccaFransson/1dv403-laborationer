@@ -1,7 +1,6 @@
 "use strict";
 //skapa nytt memory spel
 RF222CZ.NewMemory = function(wind){
-    console.log('skapar memory');
    
    var imgRandom = [], times = 0, pic1 = '', pic2='', klickedNode = [], target1='', target2='';
    var link1 = "", link2= "", score= 0, count= 0, picValue= 0;

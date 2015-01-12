@@ -1,18 +1,17 @@
 "use strict";
 
+var RF222CZ = RF222CZ || {};
+
 RF222CZ.Window = function(pic, desk, namn, colorbot, colortop, w, h, scroll){
     
     //default storlek 
     w = w || "350";
     h = h || "410";
-    //number = number || 1;
     
-    console.log('w: '+w+' h: '+h);
     this.desktop = desk;
     var template = document.querySelector('#temp');//template
-    //var windowtemp = template.content.querySelector('.window');//window klassen i template
     
-    
+    //lösning till att template.content ej fungerar i IE
     var windowTemplate;
     var tmp = document.documentMode;
     if(tmp){
@@ -21,11 +20,13 @@ RF222CZ.Window = function(pic, desk, namn, colorbot, colortop, w, h, scroll){
          windowTemplate = template.content.querySelector(".window");
     }
     
-    this.w = windowTemplate.cloneNode(true);//Kopierar min window-klass från templaten
+    //Kopierar min window-klass från templaten
+    this.w = windowTemplate.cloneNode(true);
     
-     
+    //publica variabler
     this.content = this.w.querySelector('.content');
     this.statusX = this.w.querySelector('.statusX');
+    this.closeButton = this.w.querySelector('.close');
     
     //sätter storlek på nytt fönster
     this.content.style.width = w+'px';
@@ -34,9 +35,9 @@ RF222CZ.Window = function(pic, desk, namn, colorbot, colortop, w, h, scroll){
     //tvungen att lägga till en scroll för bilderna i förtoringsglaset.
     this.content.style.overflow = scroll;
     
-    //skickar med höjden på fönstret till functionen som kommer flytta fönstrerna
+    //skickar med höjden och bredden på fönstret till functionen 
+    //som kommer flytta fönstrerna innanför skrivbordet
     this.moveWind(h, w, this.desktop);
-    
     
     
     var topPic = document.createElement('img');
@@ -56,27 +57,32 @@ RF222CZ.Window = function(pic, desk, namn, colorbot, colortop, w, h, scroll){
     desk.content.appendChild(this.w);
     
     var self = this;//gör om this så vi kan använda detta this i functionen under(utan att det ska bli this i den funktionen)
-    //stänger fönstret
-    var close = this.w.querySelector('.close');
-    close.onclick = function(){
+   
+   //stänger fönstret
+    this.closeButton = this.w.querySelector('.close');
+    this.closeButton.onclick = function(){
         self.close();
     };
+    //sätter focus på önnat fönster
     this.focus();
-    //on klick på hela fönstret z-index = 99
+    
+    //klick någonstans på ett fönster kallar på focus() 
+    //som tar reda på senaste z-index och lägger på ett till det klickade fönstret
     this.w.addEventListener('mousedown', function(e){
         self.focus();
-        console.log('klick på fönstret');
     });
     
 }
 
-RF222CZ.Window.prototype.close = function(){//plockar bort kopian utav templaten
+//plockar bort kopian utav templaten
+RF222CZ.Window.prototype.close = function(){
     this.w.parentNode.removeChild(this.w);
 };
 
+//funtionen som flyttar fönstrer
 RF222CZ.Window.prototype.moveWind = function(h, w, desk){
     
-    //sätter globala variablem som top och left FÖRSTA FÖNSTRET
+    //FÖRSTA FÖNSTRET
     var top = RF222CZ.Window.globalTop + 10;
     var left = RF222CZ.Window.globalLeft + 10;
     

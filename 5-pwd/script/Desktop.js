@@ -5,8 +5,8 @@ RF222CZ.Desktop = function(){
    //this.statusX = document.querySelector('.statusX');
    
 };
-//lägger till ikoner t programmen
-RF222CZ.Desktop.prototype.addApp = function(pic, app, namn, colorbot, colortop, w, h){//lägga till img, onklick på a. skickar till det js som skall skapa(tex newPhoto)
+//lägger till appar t skrivbordet
+RF222CZ.Desktop.prototype.addApp = function(pic, app, namn, colorbot, colortop, w, h){//lägga till img, onklick på a. skickar till det js som skall skapa appen
     
     //skapar bilder och lägger till attribut till menyn + tooltip
     var img = document.createElement('img');
@@ -23,7 +23,7 @@ RF222CZ.Desktop.prototype.addApp = function(pic, app, namn, colorbot, colortop, 
     
     var self = this;//spara gamla this som är knappen
     
-    //skapar fönster med appen man klickat på
+    //skapar fönster med appen man klickat på skcikar med appens egenskaper
     a.onclick = function(){
         var wind = new RF222CZ.Window(pic, self, namn, colorbot, colortop, w, h);//fönstret
         var photo = new app(wind);//appen
